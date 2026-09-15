@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Professional SEO -->
+    <title>লগইন করুন | Ghoti Landing Page</title>
+    <meta name="description" content="Ghoti Landing Page-এ নিরাপদে লগইন করুন এবং আপনার প্রফেশনাল ল্যান্ডিং পেজ তৈরি ও পরিচালনা করুন।">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <link rel="canonical" href="https://ghotimarket.com/">
+    <meta name="theme-color" content="#FF6B35">
+
+    <!-- Open Graph SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="লগইন করুন | Ghoti Landing Page">
+    <meta property="og:description" content="Ghoti Landing Page-এ নিরাপদে লগইন করুন এবং আপনার প্রফেশনাল ল্যান্ডিং পেজ তৈরি ও পরিচালনা করুন।">
+    <meta property="og:image" content="https://ghotimarket.com/logo/landing.png">
+    <meta property="og:site_name" content="Ghoti Landing Page">
+    <meta property="og:locale" content="bn_BD">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="লগইন করুন | Ghoti Landing Page">
+    <meta name="twitter:description" content="Ghoti Landing Page-এ নিরাপদে লগইন করুন এবং আপনার ল্যান্ডিং পেজ পরিচালনা করুন।">
+    <meta name="twitter:image" content="https://ghotimarket.com/logo/landing.png">
+
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/png" href="https://ghotimarket.com/logo/landing.png">
+    <link rel="apple-touch-icon" href="https://ghotimarket.com/logo/landing.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Ghoti Landing Page",
+        "url": "https://ghotimarket.com/",
+        "description": "Ghoti Landing Page একটি প্রফেশনাল ল্যান্ডিং পেজ তৈরি ও পরিচালনার প্ল্যাটফর্ম।",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Ghoti Landing Page",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ghotimarket.com/logo/landing.png"
+            }
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-hover: #E85A24;
+            --secondary: #FF8C00;
+            --dark: #1F2937;
+            --muted: #6B7280;
+            --bg-light: #FFF7F2;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+            --error-bg: #FEF2F2;
+            --error-text: #DC2626;
+            --error-border: #FCA5A5;
+            --success: #16A34A;
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow: 0 20px 40px -15px rgba(255, 107, 53, 0.15), 0 10px 20px -10px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Bengali", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 1050px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            border: 1px solid rgba(255, 107, 53, 0.12);
+            animation: fadeInSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .page-wrapper {
+                grid-template-columns: 1fr 1.15fr;
+            }
+        }
+
+        /* Branding Panel */
+        .brand-panel {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-panel::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            pointer-events: none;
+            animation: floatShape 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(15px) scale(1.05); }
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: var(--white);
+            z-index: 1;
+        }
+
+        .brand-logo img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px;
+            backdrop-filter: blur(4px);
+        }
+
+        .brand-body {
+            margin: 40px 0;
+            z-index: 1;
+        }
+
+        .brand-body h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-body p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            max-width: 380px;
+            line-height: 1.7;
+        }
+
+        .builder-graphic {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            backdrop-filter: blur(8px);
+            z-index: 1;
+        }
+
+        .graphic-row {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 4px;
+            width: 75%;
+        }
+
+        .graphic-row.short {
+            width: 45%;
+        }
+
+        .graphic-blocks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .graphic-block-item {
+            height: 40px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+        }
+
+        /* Mobile Logo */
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .mobile-logo img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        @media (min-width: 992px) {
+            .mobile-logo {
+                display: none;
+            }
+        }
+
+        /* Form Panel */
+        .form-panel {
+            padding: 36px 24px;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (min-width: 576px) {
+            .form-panel {
+                padding: 56px 48px;
+            }
+        }
+
+        .form-header {
+            margin-bottom: 28px;
+        }
+
+        .form-header h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .form-header p {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        /* Alert Box */
+        .alert-box {
+            display: none;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            font-weight: 500;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border: 1px solid var(--error-border);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        .alert-box.show {
+            display: flex;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+
+        .alert-box svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            fill: var(--error-text);
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            width: 20px;
+            height: 20px;
+            fill: var(--muted);
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .form-input {
+            width: 100%;
+            height: 50px;
+            padding: 0 16px 0 48px;
+            background-color: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            color: var(--dark);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-input::placeholder {
+            color: #9CA3AF;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.12);
+            background-color: #FFF;
+        }
+
+        .form-input:focus ~ .input-icon,
+        .input-wrapper:focus-within .input-icon {
+            fill: var(--primary);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--muted);
+            transition: var(--transition);
+        }
+
+        .toggle-password:hover svg {
+            fill: var(--dark);
+        }
+
+        /* Remember & Forgot Row */
+        .form-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            user-select: none;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .checkbox-input {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            background-color: var(--white);
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkbox-input::before {
+            content: "";
+            width: 10px;
+            height: 6px;
+            border-left: 2px solid var(--white);
+            border-bottom: 2px solid var(--white);
+            transform: scale(0) rotate(-45deg);
+            transition: 0.2s ease-in-out;
+        }
+
+        .checkbox-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkbox-input:checked::before {
+            transform: scale(1) rotate(-45deg);
+        }
+
+        .forgot-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            height: 52px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.3);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .submit-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.75;
+            cursor: not-allowed;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Footer Links & Info */
+        .form-footer-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .form-footer-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .form-footer-link a:hover {
+            text-decoration: underline;
+        }
+
+        .site-footer {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 991px) {
+            .brand-panel {
+                display: none;
+            }
+            .page-wrapper {
+                max-width: 480px;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            .page-wrapper, .alert-box, .brand-panel::before {
+                animation: none !important;
+            }
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <!-- Branding / Visual Panel -->
+        <aside class="brand-panel" aria-label="Brand Information">
+            <a href="https://ghotimarket.com/" class="brand-logo">
+                <img src="https://ghotimarket.com/logo/landing.png" alt="Ghoti Landing Page Logo" width="44" height="44" loading="eager" decoding="async">
+                <span>Ghoti Landing Page</span>
+            </a>
+            
+            <div class="brand-body">
+                <h1>আবার স্বাগতম</h1>
+                <p>আপনার রূপান্তর হার বৃদ্ধি করতে এবং প্রফেশনাল ল্যান্ডিং পেজ পরিচালনা করতে ড্যাশবোর্ডে প্রবেশ করুন।</p>
+            </div>
+
+            <div class="builder-graphic" aria-hidden="true">
+                <div class="graphic-row"></div>
+                <div class="graphic-row short"></div>
+                <div class="graphic-blocks">
+                    <div class="graphic-block-item"></div>
+                    <div class="graphic-block-item"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Login Form Panel -->
+        <main class="form-panel">
+            <!-- Mobile Logo -->
+            <div class="mobile-logo">
+                <img src="https://ghotimarket.com/logo/landing.png" alt="Ghoti Logo" width="38" height="38" loading="eager" decoding="async">
+                <span>Ghoti Landing Page</span>
+            </div>
+
+            <header class="form-header">
+                <h2>লগইন করুন</h2>
+                <p>আপনার ল্যান্ডিং পেজ তৈরি করতে একাউন্টে লগইন করুন</p>
+            </header>
+
+            <!-- Alert Container -->
+            <div id="alertBox" class="alert-box" role="alert" aria-live="polite">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                <span id="alertMessage"></span>
+            </div>
+
+            <form id="loginForm" novalidate>
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label class="form-label" for="email">ইমেইল</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <input type="email" id="email" class="form-input" placeholder="আপনার ইমেইল লিখুন" autocomplete="email" inputmode="email" required>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label class="form-label" for="password">পাসওয়ার্ড</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                        <input type="password" id="password" class="form-input" placeholder="আপনার পাসওয়ার্ড লিখুন" autocomplete="current-password" required>
+                        <button type="button" class="toggle-password" id="togglePasswordBtn" aria-label="পাসওয়ার্ড দেখুন">
+                            <svg id="eyeIcon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password Row -->
+                <div class="form-actions-row">
+                    <label class="checkbox-label" for="rememberMe">
+                        <input type="checkbox" id="rememberMe" class="checkbox-input">
+                        <span>আমাকে মনে রাখুন</span>
+                    </label>
+                    <a href="forgot-password.html" class="forgot-link">পাসওয়ার্ড ভুলে গেছেন?</a>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    <span id="btnText">লগইন করুন</span>
+                    <div class="spinner" id="btnSpinner"></div>
+                </button>
+            </form>
+
+            <div class="form-footer-link">
+                এখনো একাউন্ট নেই? <a href="signup.html">একাউন্ট তৈরি করুন</a>
+            </div>
+
+            <footer class="site-footer">
+                &copy; 2026 Ghoti Landing Page. All rights reserved.
+            </footer>
+        </main>
+    </div>
+
+    <!-- Firebase SDK v10.12.2 Modular -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Firebase Configuration (Unchanged)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBUhNhYvuo_FTvZ5RZR6Gn-4hsUY21S0XE",
+            authDomain: "ghotimarket.firebaseapp.com",
+            databaseURL: "https://ghotimarket-default-rtdb.firebaseio.com",
+            projectId: "ghotimarket",
+            storageBucket: "ghotimarket.firebasestorage.app",
+            messagingSenderId: "481257644093",
+            appId: "1:481257644093:web:0dfc3699d6b3c86afeca54",
+            measurementId: "G-4SR8V2EKC1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // DOM Elements
+        const form = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const rememberMeCheckbox = document.getElementById('rememberMe');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+        const alertBox = document.getElementById('alertBox');
+        const alertMessage = document.getElementById('alertMessage');
+        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        const eyeSvgPath = "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z";
+        const eyeOffSvgPath = "M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2z";
+
+        // Toggle Password Visibility
+        togglePasswordBtn.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.innerHTML = `<path d="${eyeOffSvgPath}"/>`;
+                togglePasswordBtn.setAttribute('aria-label', 'পাসওয়ার্ড লুকান');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.innerHTML = `<path d="${eyeSvgPath}"/>`;
+                togglePasswordBtn.setAttribute('aria-label', 'পাসওয়ার্ড দেখুন');
+            }
+        });
+
+        // Helper Functions for Alerts
+        function showAlert(message) {
+            alertMessage.textContent = message;
+            alertBox.classList.add('show');
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function hideAlert() {
+            alertBox.classList.remove('show');
+            alertMessage.textContent = '';
+        }
+
+        // Loading State Controller
+        function setLoading(isLoading) {
+            submitBtn.disabled = isLoading;
+            if (isLoading) {
+                btnText.textContent = "লগইন হচ্ছে...";
+                btnSpinner.style.display = "block";
+            } else {
+                btnText.textContent = "লগইন করুন";
+                btnSpinner.style.display = "none";
+            }
+        }
+
+        // Prevent multiple simultaneous redirects
+        let isRedirecting = false;
+
+        // Validate and Verify User Document in Firestore
+        async function verifyAndRedirectUser(user) {
+            if (isRedirecting) return;
+            try {
+                const uid = user.uid;
+                const userDocRef = doc(db, "landing_users", uid);
+                const userDocSnap = await getDoc(userDocRef);
+
+                if (!userDocSnap.exists()) {
+                    await signOut(auth);
+                    showAlert("আপনার ইউজার তথ্য পাওয়া যায়নি। অনুগ্রহ করে সাপোর্টে যোগাযোগ করুন।");
+                    setLoading(false);
+                    return;
+                }
+
+                const data = userDocSnap.data();
+
+                // Strict validation conditions
+                if (data.uid !== uid) {
+                    await signOut(auth);
+                    showAlert("ইউজার আইডি মিলছে না। অনুগ্রহ করে আবার চেষ্টা করুন।");
+                    setLoading(false);
+                    return;
+                }
+
+                if (data.active !== true) {
+                    await signOut(auth);
+                    showAlert("আপনার একাউন্ট বর্তমানে সক্রিয় নয়।");
+                    setLoading(false);
+                    return;
+                }
+
+                if (data.verified !== true) {
+                    await signOut(auth);
+                    showAlert("আপনার একাউন্ট এখনো যাচাই করা হয়নি।");
+                    setLoading(false);
+                    return;
+                }
+
+                // All checks passed -> Redirect to Dashboard
+                isRedirecting = true;
+                window.location.href = "dashboard.html";
+
+            } catch (error) {
+                console.error("Verification Error:", error);
+                await signOut(auth);
+                showAlert("লগইন করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                setLoading(false);
+            }
+        }
+
+        // Check Auth State on Page Load
+        onAuthStateChanged(auth, async (user) => {
+            if (user && !isRedirecting) {
+                await verifyAndRedirectUser(user);
+            }
+        });
+
+        // Form Submit Handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert();
+
+            const email = emailInput.value.trim().toLowerCase();
+            const password = passwordInput.value;
+            const rememberMe = rememberMeCheckbox.checked;
+
+            if (!email) {
+                showAlert("সঠিক ইমেইল ঠিকানা লিখুন।");
+                emailInput.focus();
+                return;
+            }
+
+            if (!password) {
+                showAlert("পাসওয়ার্ড খালি রাখা যাবে না।");
+                passwordInput.focus();
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                // Set persistence based on Remember Me checkbox
+                const persistenceType = rememberMe ? browserLocalPersistence : browserSessionPersistence;
+                await setPersistence(auth, persistenceType);
+
+                // Authenticate with Firebase Auth
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Verify Firestore document & permissions
+                await verifyAndRedirectUser(user);
+
+            } catch (error) {
+                console.error("Auth Error:", error);
+                setLoading(false);
+                let friendlyMsg = "লগইন করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।";
+
+                if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                    friendlyMsg = "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।";
+                } else if (error.code === 'auth/user-not-found') {
+                    friendlyMsg = "এই ইমেইল দিয়ে কোনো একাউন্ট পাওয়া যায়নি।";
+                } else if (error.code === 'auth/invalid-email') {
+                    friendlyMsg = "সঠিক ইমেইল ঠিকানা লিখুন।";
+                } else if (error.code === 'auth/user-disabled') {
+                    friendlyMsg = "আপনার একাউন্ট বর্তমানে নিষ্ক্রিয়।";
+                } else if (error.code === 'auth/too-many-requests') {
+                    friendlyMsg = "অতিরিক্ত প্রচেষ্টার কারণে সাময়িকভাবে ব্লক করা হয়েছে। কিছুক্ষণ পর চেষ্টা করুন।";
+                }
+
+                showAlert(friendlyMsg);
+            }
+        });
+    </script>
+</body>
+</html>
