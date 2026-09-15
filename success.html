@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success | Ghoti Landing Page</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --success: #10B981;
+            --dark: #1A1D20;
+            --bg: #F4F6F9;
+            --card: #FFFFFF;
+            --radius: 16px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        body {
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .success-card {
+            background: var(--card);
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            max-width: 480px;
+            width: 100%;
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: #DEF7EC;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        .icon-wrapper svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--success);
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+        p {
+            font-size: 1rem;
+            color: #718096;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .redirect-text {
+            font-size: 0.9rem;
+            color: #A0AEC0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #E2E8F0;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background: #E05E00;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-card">
+        <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+            </svg>
+        </div>
+        
+        <h1>আপলোড সফল হয়েছে!</h1>
+        <p>আপনার প্রোডাক্টটি সফলভাবে সংরক্ষণ করা হয়েছে। এখন এটি আপনার ল্যান্ডিং পেজে দেখা যাবে।</p>
+
+        <div class="redirect-text">
+            <div class="spinner"></div>
+            <span><span id="countdown">1</span> সেকেন্ডে ড্যাশবোর্ডে নিয়ে যাওয়া হচ্ছে...</span>
+        </div>
+
+        <a href="dashboard.html" class="btn">এখনই ড্যাশবোর্ডে যান</a>
+    </div>
+
+    <script>
+        let timeLeft = 1;
+        const countdownEl = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = "dashboard.html";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
