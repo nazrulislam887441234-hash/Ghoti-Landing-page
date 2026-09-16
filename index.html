@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghoti Landing Page — ফ্রি Professional Landing Page তৈরি করুন</title>
+    <meta name="description" content="Ghoti Landing Page দিয়ে আপনার product-এর জন্য professional landing page তৈরি করুন। Free dashboard, order management এবং clean ad-free experience।">
+    <link rel="canonical" href="https://landing.ghotimarket.com/">
+    <link rel="icon" href="https://ghotimarket.com/logo/landing.png" type="image/png">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:title" content="Ghoti Landing Page — ফ্রি Professional Landing Page তৈরি করুন">
+    <meta property="og:description" content="Ghoti Landing Page দিয়ে আপনার product-এর জন্য professional landing page তৈরি করুন। Free dashboard, order management এবং clean ad-free experience।">
+    <meta property="og:image" content="https://ghotimarket.com/logo/landing.png">
+    <meta property="og:url" content="https://landing.ghotimarket.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Ghoti Landing Page",
+      "url": "https://landing.ghotimarket.com/",
+      "logo": "https://ghotimarket.com/logo/landing.png"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ghoti Landing Page",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BDT"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --primary-hover: #e56000;
+            --bg-main: #FFFFFF;
+            --bg-alt: #F9FAFB;
+            --bg-orange-light: #FFF7F2;
+            --text-main: #111827;
+            --text-muted: #374151;
+            --text-light: #6B7280;
+            --border-color: #E5E7EB;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.25s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Buttons & Badges */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: var(--bg-orange-light);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background-color: var(--bg-orange-light);
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 50px;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-brand img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .logo-brand span {
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-actions .btn-login {
+            font-weight: 600;
+            color: var(--text-muted);
+            padding: 8px 16px;
+        }
+
+        .nav-actions .btn-login:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--text-main);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-main);
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transform: translateY(-120%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--bg-alt);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px 0;
+            background: linear-gradient(180deg, var(--bg-orange-light) 0%, var(--bg-main) 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-light);
+            max-width: 680px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 48px;
+            padding: 24px;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .trust-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+        }
+
+        /* Section Headings */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 56px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* What is Ghoti Landing Page */
+        .what-is-section {
+            padding: 100px 0;
+            background-color: var(--bg-main);
+        }
+
+        .what-is-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .what-is-card {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: var(--transition);
+        }
+
+        .what-is-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .what-is-card svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--primary);
+        }
+
+        .what-is-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .what-is-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .how-section {
+            padding: 100px 0;
+            background-color: var(--bg-alt);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .step-card {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -16px;
+            left: 24px;
+            background-color: var(--primary);
+            color: #FFFFFF;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .step-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .step-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Simple Flow Bar */
+        .flow-section {
+            padding: 60px 0;
+            background-color: var(--bg-main);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .flow-step {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-align: center;
+            flex: 1;
+            min-width: 130px;
+        }
+
+        .flow-arrow {
+            color: var(--primary);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flow-arrow svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary);
+        }
+
+        /* Demo Section */
+        .demo-section {
+            padding: 100px 0;
+            background-color: var(--bg-orange-light);
+            text-align: center;
+        }
+
+        .demo-box {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .browser-mockup {
+            width: 100%;
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .browser-header {
+            background-color: var(--border-color);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #CBD5E1;
+        }
+
+        .browser-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background-color: var(--bg-main);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--bg-orange-light);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Free Dashboard & Order Management Section */
+        .dashboard-preview-section {
+            padding: 100px 0;
+            background-color: var(--bg-alt);
+        }
+
+        .dashboard-mockup-wrapper {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            margin-top: 40px;
+        }
+
+        .dash-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .dash-stat-card {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .dash-stat-card span:first-child {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .dash-stat-card span:last-child {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .dash-table-container {
+            overflow-x: auto;
+        }
+
+        .dash-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .dash-table th, .dash-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dash-table th {
+            font-weight: 600;
+            color: var(--text-muted);
+            background-color: var(--bg-alt);
+        }
+
+        .dash-table td {
+            color: var(--text-main);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: #DEF7EC;
+            color: #03543F;
+        }
+
+        /* Who Can Use & Why Landing Page */
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 100px 0;
+            background-color: var(--bg-main);
+        }
+
+        .content-block {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content-block h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .check-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* 100% Free & No Ads Section */
+        .pricing-free-section {
+            padding: 100px 0;
+            background-color: var(--bg-alt);
+            text-align: center;
+        }
+
+        .pricing-card {
+            background-color: var(--bg-main);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: 48px 32px;
+            max-width: 500px;
+            margin: 40px auto 0 auto;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .pricing-card .price-tag {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .pricing-card .price-sub {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .pricing-features {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            margin: 16px 0;
+        }
+
+        .pricing-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .pricing-feature-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+            background-color: var(--bg-main);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            text-align: left;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+            stroke: var(--primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            padding: 0 24px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 20px;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--bg-orange-light) 0%, #FFFFFF 100%);
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-box h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-box p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 600px;
+        }
+
+        .cta-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .login-link-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .login-link-text a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0B0F17;
+            color: #9CA3AF;
+            padding: 80px 0 32px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .footer-brand-col {
+                grid-column: span 1;
+            }
+        }
+
+        .footer-brand-col .logo-brand span {
+            color: #FFFFFF;
+        }
+
+        .footer-brand-col p {
+            font-size: 0.95rem;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col a {
+            font-size: 0.9rem;
+            color: #9CA3AF;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1F2937;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .nav-links, .nav-actions {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo-brand">
+                <img src="https://ghotimarket.com/logo/landing.png" alt="Ghoti Landing Page Logo">
+                <span>GHOTI LANDING PAGE</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="https://ghotimarket.com/landing/project?smart-watch">Demo</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+
+            <div class="nav-actions" id="auth-nav-actions">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up Free</a>
+            </div>
+
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle mobile menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+            <a href="#features" class="mobile-nav-link">Features</a>
+            <a href="https://ghotimarket.com/landing/project?smart-watch" class="mobile-nav-link">Demo</a>
+            <a href="#faq" class="mobile-nav-link">FAQ</a>
+            <div class="mobile-menu-actions" id="mobile-auth-actions">
+                <a href="login.html" class="btn btn-outline" style="text-align: center;">Login</a>
+                <a href="signup.html" class="btn btn-primary" style="text-align: center;">Sign Up Free</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    ১০০% ফ্রি প্ল্যাটফর্ম
+                </div>
+                <h1>আপনার পণ্যের জন্য তৈরি করুন প্রফেশনাল Landing Page — <span>একদম ফ্রি</span></h1>
+                <p>আপনার product-এর জন্য সুন্দর, responsive এবং professional landing page তৈরি করুন। সঙ্গে থাকছে free dashboard এবং order management system — কোনো Ads ছাড়াই।</p>
+                
+                <div class="hero-buttons">
+                    <a href="/signup" class="btn btn-primary">ফ্রি শুরু করুন</a>
+                    <a href="https://ghotimarket.com/landing/product?smart-watch" class="btn btn-outline">লাইভ ডেমো দেখুন</a>
+                </div>
+
+                <!-- Trust Bar -->
+                <div class="trust-bar">
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        100% Free
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        No Ads
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Free Dashboard
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Order Management
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is Ghoti Landing Page -->
+    <section class="what-is-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ghoti Landing Page কী?</h2>
+                <p>Ghoti Landing Page হলো একটি সহজ platform যেখানে product seller বা business owner নিজের product-এর জন্য আলাদা professional landing page তৈরি করতে পারে।</p>
+            </div>
+            <div class="what-is-grid">
+                <div class="what-is-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    <h3>Product Showcase</h3>
+                    <p>আপনার পণ্যের আকর্ষক ও পেশাদার উপস্থাপনা নিশ্চিত করুন খুব সহজেই।</p>
+                </div>
+                <div class="what-is-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <h3>Product Details & Price</h3>
+                    <p>সঠিক দাম, অফার প্রাইস ও বিশদ বিবরণ সহ পণ্যের সকল তথ্য প্রদর্শন করুন।</p>
+                </div>
+                <div class="what-is-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <h3>Images & Order System</h3>
+                    <p>উচ্চমানের ছবি যুক্ত করুন এবং কাস্টমারের কাছ থেকে সরাসরি অর্ডার রিসিভ করুন।</p>
+                </div>
+                <div class="what-is-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <h3>Phone & WhatsApp Contact</h3>
+                    <p>সরাসরি ফোন কল এবং WhatsApp যোগাযোগের মাধ্যমে কাস্টমারের সাথে যুক্ত থাকুন।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>কীভাবে কাজ করে</h2>
+                <p>খুব সহজ কয়েকটি ধাপে আপনার প্রফেশনাল ল্যান্ডিং পেজ লাইভ করুন।</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>ফ্রি অ্যাকাউন্ট তৈরি করুন মুহূর্তের মধ্যে।</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Login</h3>
+                    <p>আপনার ড্যাশবোর্ডে নিরাপদে প্রবেশ করুন।</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Landing page তৈরি করুন</h3>
+                    <p>আপনার পণ্যের প্রয়োজনীয় তথ্য ও ছবি দিন।</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Publish করুন</h3>
+                    <p>আপনার ল্যান্ডিং পেজ এক ক্লিকে লাইভ করুন।</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3>Customer-এর সাথে Share করুন</h3>
+                    <p>লিংকটি ফেসবুক, ওয়াটসঅ্যাপ বা অন্যান্য জায়গায় শেয়ার করুন।</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3>Customer Order করবে</h3>
+                    <p>গ্রাহক ল্যান্ডিং পেজ থেকে সরাসরি অর্ডার সাবমিট করবেন।</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">7</div>
+                    <h3>ড্যাশবোর্ড থেকে অর্ডার দেখুন</h3>
+                    <p>অর্ডারসমূহ ড্যাশবোর্ড থেকে সহজে দেখুন ও ম্যানেজ করুন।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Flow Section -->
+    <section class="flow-section">
+        <div class="container">
+            <div class="flow-container">
+                <div class="flow-step">Sign Up</div>
+                <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                <div class="flow-step">Login</div>
+                <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                <div class="flow-step">Dashboard</div>
+                <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                <div class="flow-step">Add Product</div>
+                <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                <div class="flow-step">Create Page</div>
+                <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                <div class="flow-step">Publish</div>
+                <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                <div class="flow-step">Customer Orders</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="demo-box">
+                <div class="section-header" style="margin-bottom: 0;">
+                    <h2>আগে Demo দেখুন</h2>
+                    <p>একটি বাস্তব product landing page কেমন হতে পারে তা সরাসরি দেখে নিন।</p>
+                </div>
+                
+                <div class="browser-mockup">
+                    <div class="browser-header">
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                    </div>
+                    <div class="browser-body">
+                        <strong>Ghoti Landing Page - Smart Watch Project Preview</strong>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">এই ডেমো লিংকে গিয়ে দেখতে পাবেন একটি পূর্ণাঙ্গ প্রোডাক্ট পেজ কীভাবে কাজ করে, যেখানে প্রাইস, ডিসক্রিপশন এবং অর্ডার ফর্ম যুক্ত থাকে।</p>
+                    </div>
+                </div>
+
+                <a href="https://ghotimarket.com/landing/product?smart-watch" class="btn btn-primary">Smart Watch Demo দেখুন</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>এক জায়গায় প্রয়োজনীয় সবকিছু</h2>
+                <p>আপনার অনলাইন ব্যবসার ল্যান্ডিং পেজ পরিচালনার জন্য যা প্রয়োজন, তার সবই এখানে পাবেন।</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 5h16v13H4z"/><path d="M16 2v3M8 2v3"/></svg></div>
+                    <h3>Professional Landing Page</h3>
+                    <p>আকর্ষক লেআউট যা আপনার ব্র্যান্ডের ভ্যালু বাড়িয়ে তোলে।</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+                    <h3>Mobile Responsive</h3>
+                    <p>স্মার্টফোন, ট্যাব ও কম্পিউটার সব ডিভাইসেই নিখুঁতভাবে প্রদর্শিত হয়।</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                    <h3>Product Management</h3>
+                    <p>সহজেই আপনার প্রোডাক্টগুলো যোগ, আপডেট বা পরিবর্তন করুন।</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div>
+                    <h3>Free Dashboard</h3>
+                    <p>সবকিছু নিয়ন্ত্রণ করার জন্য সম্পূর্ণ ফ্রি এবং গোছানো ড্যাশবোর্ড।</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                    <h3>Order Management</h3>
+                    <p>গ্রাহকের দেওয়া অর্ডারগুলো সহজে ট্র্যাক ও ম্যানেজ করুন।</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                    <h3>Customer Order System</h3>
+                    <p>নিখুঁত ও ঝামেলাহীন অর্ডার সাবমিশন ফর্ম সিস্টেম।</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                    <h3>Phone Contact</h3>
+                    <p>সরাসরি কথা বলে কনফার্ম করার জন্য কাস্টমার ফোন নম্বর অপশন।</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+                    <h3>WhatsApp Contact</h3>
+                    <p>হোয়াটসঅ্যাপের মাধ্যমে কাস্টমারদের দ্রুত সাপোর্ট দেওয়ার সুবিধা।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Dashboard & Order Management -->
+    <section class="dashboard-preview-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>আপনার ফ্রি ড্যাশবোর্ড ও অর্ডার ম্যানেজমেন্ট</h2>
+                <p>Landing Page তৈরি করার পাশাপাশি আপনি একটি ড্যাশবোর্ড থেকে আপনার প্রোডাক্ট এবং কাস্টমার অর্ডারসমূহ সহজে দেখতে ও ম্যানেজ করতে পারবেন।</p>
+            </div>
+            
+            <div class="dashboard-mockup-wrapper">
+                <div class="dash-stats">
+                    <div class="dash-stat-card">
+                        <span>Total Products</span>
+                        <span>04</span>
+                    </div>
+                    <div class="dash-stat-card">
+                        <span>Active Products</span>
+                        <span>04</span>
+                    </div>
+                    <div class="dash-stat-card">
+                        <span>Total Orders</span>
+                        <span>12</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 16px; font-size: 1.1rem;">Recent Orders (UI Demonstration)</h3>
+                <div class="dash-table-container">
+                    <table class="dash-table">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Phone</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>রহিম আহমেদ</td>
+                                <td>01700000000</td>
+                                <td>Smart Watch Pro</td>
+                                <td>1</td>
+                                <td>৳১,৫০০</td>
+                                <td><span class="status-badge">Pending</span></td>
+                                <td>16 Sep 2026</td>
+                            </tr>
+                            <tr>
+                                <td>করিম উদ্দিন</td>
+                                <td>01800000000</td>
+                                <td>Wireless Earbuds</td>
+                                <td>2</td>
+                                <td>৳২,৪০০</td>
+                                <td><span class="status-badge">Confirmed</span></td>
+                                <td>15 Sep 2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who Can Use & Why Landing Page -->
+    <section class="container">
+        <div class="grid-two-col">
+            <div class="content-block">
+                <h2>কারা ব্যবহার করতে পারবেন?</h2>
+                <div class="checklist">
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Online Seller</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Facebook Seller</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Small Business</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Local Business</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Product Reseller</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> উদ্যোক্তা</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Service Provider</div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>Product-এর জন্য Landing Page কেন?</h2>
+                <div class="checklist">
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> কাস্টমারের সামনে ফোকাসড ইনফরমেশন</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> প্রফেশনাল প্রেজেন্টেশন</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> পরিষ্কার কল-টু-অ্যাকশন (CTA)</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> প্রোডাক্টের সব তথ্য এক জায়গায়</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> সরাসরি অর্ডার পাওয়ার সুযোগ</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> খুব সহজে শেয়ার করা যায়</div>
+                    <div class="check-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> মোবাইল-ফ্রেন্ডলি অভিজ্ঞতা</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 100% Free & No Ads Section -->
+    <section class="pricing-free-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>১০০% ফ্রি — কোনো Ads নেই</h2>
+                <p>আপনার Landing Page তৈরি, Dashboard ব্যবহার এবং Orders দেখার জন্য কোনো subscription fee নেই।</p>
+            </div>
+
+            <div class="pricing-card">
+                <span class="price-tag">৳০</span>
+                <span class="price-sub">Forever Free</span>
+                <div class="pricing-features">
+                    <div class="pricing-feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Landing Page — Free</div>
+                    <div class="pricing-feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Dashboard — Free</div>
+                    <div class="pricing-feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Product Management — Free</div>
+                    <div class="pricing-feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Order Management — Free</div>
+                    <div class="pricing-feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Customer Orders — Free</div>
+                    <div class="pricing-feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No Ads</div>
+                    <div class="pricing-feature-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> No Hidden Charges</div>
+                </div>
+                <a href="signup.html" class="btn btn-primary" style="width: 100%;">Sign Up Free</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>সচরাচর জিজ্ঞাসিত প্রশ্নাবলী</h2>
+                <p>আপনার মনে থাকা বিভিন্ন প্রশ্নের উত্তর জেনে নিন।</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Ghoti Landing Page কী?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ghoti Landing Page হলো এমন একটি প্ল্যাটফর্ম যার মাধ্যমে যেকোনো উদ্যোক্তা বা বিক্রেতা নিজের প্রোডাক্টের জন্য প্রফেশনাল ল্যান্ডিং পেজ তৈরি করতে পারেন।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        এটি কি সত্যিই ফ্রি?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>হ্যাঁ, এটি ১০০% ফ্রি। ল্যান্ডিং পেজ তৈরি, ড্যাশবোর্ড ব্যবহার এবং অর্ডার ম্যানেজমেন্ট সম্পূর্ণ বিনামূল্যে করতে পারবেন।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        কোনো Ads আছে কি?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>না, আপনার ল্যান্ডিং পেজে কোনো বিরক্তিকর বিজ্ঞাপন বা Ads থাকবে না। অভিজ্ঞতা সম্পূর্ণ ক্লিন রাখা হয়েছে।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ড্যাশবোর্ড কি ফ্রি?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>হ্যাঁ, প্রোডাক্ট ও অর্ডার ম্যানেজ করার জন্য ড্যাশবোর্ডটি সম্পূর্ণ ফ্রি।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        অর্ডার ম্যানেজমেন্ট কি ফ্রি?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>হ্যাঁ, কাস্টমারদের অর্ডার দেখা ও ম্যানেজ করার সুবিধাটি ফ্রি।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ল্যান্ডিং পেজ কীভাবে তৈরি করবো?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>সাইন আপ করার পর ড্যাশবোর্ডে গিয়ে খুব সহজেই প্রোডাক্টের তথ্য দিয়ে ল্যান্ডিং পেজ তৈরি করা যায়।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        কাস্টমার কীভাবে অর্ডার করবে?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>আপনার ল্যান্ডিং পেজে থাকা অর্ডার ফর্ম পূরণ করে কাস্টমার সহজে অর্ডার সাবমিট করতে পারবেন।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        অর্ডার কোথায় দেখতে পাবো?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>আপনার নিজস্ব ড্যাশবোর্ডের অর্ডার সেকশনে কাস্টমারদের সকল অর্ডার দেখতে পাবেন।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Phone এবং WhatsApp কীভাবে কাজ করবে?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>পেজে আপনার দেওয়া ফোন নম্বর ও WhatsApp লিংক যুক্ত থাকবে, যাতে কাস্টমার সরাসরি আপনার সাথে যোগাযোগ করতে পারে।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        মোবাইল থেকে কি ব্যবহার করা যাবে?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>হ্যাঁ, মোবাইল বা যেকোনো ডিভাইস থেকে খুব সহজেই এটি ব্যবহার করতে পারবেন।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        অ্যাকাউন্ট তৈরি করতে কী প্রয়োজন?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>একটি সক্রিয় ইমেল বা ফোন নম্বর দিয়ে খুব সহজেই অ্যাকাউন্ট তৈরি করা যায়।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ডেমো কোথায় দেখতে পারি?
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>আমাদের লাইভ ডেমো দেখতে নিচের লিঙ্কে ক্লিক করুন: <br><br>
+                        <a href="https://ghotimarket.com/landing/pproduct?smart-watch" class="btn btn-primary" style="display: inline-flex; margin-top: 8px;">Smart Watch Demo দেখুন</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-box">
+                <h2>আজই আপনার প্রথম Landing Page তৈরি করুন</h2>
+                <p>কোনো complicated setup নয়। Free account তৈরি করে শুরু করুন।</p>
+                <div class="cta-links">
+                    <a href="/signup" class="btn btn-primary">Sign Up Free</a>
+                </div>
+                <div class="login-link-text">
+                    Already have an account? <a href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-col">
+                    <a href="https://landing.ghotimarket.com" class="logo-brand">
+                        <img src="https://ghotimarket.com/logo/landing.png" alt="Ghoti Landing Page Logo">
+                        <span>GHOTI LANDING PAGE</span>
+                    </a>
+                    <p>Product এবং service-এর জন্য professional landing page তৈরি করার সহজ platform।</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="https://ghotimarket.com/landing/product?smart-watch">Demo</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/signup">Sign Up Free</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#features">Order Management</a></li>
+                        <li><a href="#features">Product Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Ghoti Landing Page. All rights reserved.</div>
+                <div>Powered by GHOTI MARKET</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript & Firebase Modular SDK Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyBUhNhYvuo_FTvZ5RZR6Gn-4hsUY21S0XE",
+  authDomain: "ghotimarket.firebaseapp.com",
+  databaseURL: "https://ghotimarket-default-rtdb.firebaseio.com",
+  projectId: "ghotimarket",
+  storageBucket: "ghotimarket.firebasestorage.app",
+  messagingSenderId: "481257644093",
+  appId: "1:481257644093:web:0dfc3699d6b3c86afeca54",
+  measurementId: "G-4SR8V2EKC1"
+};
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Mobile Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Auth State Listener & Firestore User Document Check (landingpage_users/{uid})
+        onAuthStateChanged(auth, async (user) => {
+            const navActions = document.getElementById('auth-nav-actions');
+            const mobileAuthActions = document.getElementById('mobile-auth-actions');
+
+            if (user) {
+                // Verify user document in landingpage_users collection
+                try {
+                    const userDocRef = doc(db, "landingpage_users", user.uid);
+                    const userDocSnap = await getDoc(userDocRef);
+
+                    if (userDocSnap.exists()) {
+                        const userData = userDocSnap.data();
+                        if (userData.active && userData.verified) {
+                            // Render Logged-in Navbar State
+                            navActions.innerHTML = `
+                                <a href="dashboard.html" class="btn-login">Dashboard</a>
+                                <a href="create.html" class="btn btn-primary">Create Page</a>
+                                <button id="logout-btn" class="btn btn-outline" style="padding: 8px 16px;">Logout</button>
+                            `;
+                            mobileAuthActions.innerHTML = `
+                                <a href="dashboard.html" class="btn btn-outline" style="text-align: center;">Dashboard</a>
+                                <a href="create.html" class="btn btn-primary" style="text-align: center;">Create Page</a>
+                                <button id="mobile-logout-btn" class="btn btn-outline" style="text-align: center; width: 100%;">Logout</button>
+                            `;
+
+                            document.getElementById('logout-btn')?.addEventListener('click', handleLogout);
+                            document.getElementById('mobile-logout-btn')?.addEventListener('click', handleLogout);
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error fetching user profile:", error);
+                }
+            } else {
+                // Default logged out state remains intact as rendered in HTML
+            }
+        });
+
+        async function handleLogout() {
+            try {
+                await signOut(auth);
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error("Logout Error:", error);
+            }
+        }
+    </script>
+</body>
+</html>
