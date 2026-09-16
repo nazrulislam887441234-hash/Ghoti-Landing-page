@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Management | GHOTI LANDING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff3ed',
+                            100: '#ffe4d6',
+                            500: '#FF6B35',
+                            600: '#e85520',
+                            700: '#c44214',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', 'Hind Siliguri', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 h-full flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Auth Guard Loading Screen -->
+    <div id="authLoading" class="fixed inset-0 bg-white z-[100] flex flex-col items-center justify-center">
+        <div class="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-slate-600 font-medium text-sm">Authenticating session...</p>
+    </div>
+
+    <!-- Main App Layout -->
+    <div id="appLayout" class="flex h-full overflow-hidden hidden">
+        
+        <!-- Desktop Sidebar -->
+        <aside class="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 z-20">
+            <div class="p-6 border-b border-slate-100 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 tracking-tight leading-none">GHOTI</h1>
+                    <span class="text-xs font-semibold text-brand-500 uppercase tracking-wider">Landing Orders</span>
+                </div>
+            </div>
+            
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto custom-scrollbar">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-brand-50 text-brand-600 font-semibold text-sm transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    Orders
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-slate-100">
+                <div class="bg-slate-50 p-3 rounded-xl mb-3 border border-slate-100">
+                    <p id="sidebarUserEmail" class="text-xs font-medium text-slate-700 truncate">Loading...</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Authenticated Seller</p>
+                </div>
+                <button onclick="handleLogout()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-red-600 hover:border-red-100 transition-all text-sm font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+            
+            <!-- Mobile Header -->
+            <header class="lg:hidden bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between z-10">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    </div>
+                    <span class="font-bold text-slate-900">Orders</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="fetchOrdersData()" class="p-2 text-slate-600 hover:text-brand-500 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Refresh">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    </button>
+                    <button onclick="handleLogout()" class="p-2 text-slate-600 hover:text-red-600 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Logout">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Scrollable Content -->
+            <main class="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-6 lg:p-8 space-y-6">
+                
+                <!-- Page Header & Actions -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Order Management</h2>
+                        <p class="text-sm text-slate-500 mt-0.5">Manage and track live orders from your active landing pages.</p>
+                    </div>
+                    <div class="flex items-center gap-3 self-start sm:self-auto">
+                        <button onclick="fetchOrdersData()" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-300 shadow-sm transition-all active:scale-95">
+                            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Statistics Section -->
+                <div id="statsContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+                    <!-- Stat Card: Total -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total</span>
+                            <div class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="statTotal" class="text-xl sm:text-2xl font-bold text-slate-900">-</h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5">All orders</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-slate-300"></div>
+                    </div>
+                    <!-- Stat Card: Pending -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">Pending</span>
+                            <div class="w-8 h-8 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="statPending" class="text-xl sm:text-2xl font-bold text-slate-900">-</h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Awaiting action</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-amber-500"></div>
+                    </div>
+                    <!-- Stat Card: Confirm -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Confirm</span>
+                            <div class="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="statConfirm" class="text-xl sm:text-2xl font-bold text-slate-900">-</h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Verified orders</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-blue-500"></div>
+                    </div>
+                    <!-- Stat Card: Packeging -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold text-purple-600 uppercase tracking-wider">Packeging</span>
+                            <div class="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="statPackeging" class="text-xl sm:text-2xl font-bold text-slate-900">-</h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Being packed</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-purple-500"></div>
+                    </div>
+                    <!-- Stat Card: Processing -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Processing</span>
+                            <div class="w-8 h-8 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="statProcessing" class="text-xl sm:text-2xl font-bold text-slate-900">-</h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5">In transit/hub</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-indigo-500"></div>
+                    </div>
+                    <!-- Stat Card: Delivery -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Delivery</span>
+                            <div class="w-8 h-8 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 id="statDelivery" class="text-xl sm:text-2xl font-bold text-slate-900">-</h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Successfully delivered</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-emerald-500"></div>
+                    </div>
+                </div>
+
+                <!-- Search & Filters Bar -->
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col md:flex-row items-center gap-4 justify-between">
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-80">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </span>
+                        <input type="text" id="searchInput" placeholder="Search customer, phone, product..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all">
+                    </div>
+
+                    <!-- Status Filter Tabs -->
+                    <div class="w-full md:w-auto overflow-x-auto custom-scrollbar pb-1 md:pb-0 flex items-center gap-1.5 bg-slate-50 p-1 rounded-xl border border-slate-200/60">
+                        <button onclick="setFilter('all')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all bg-white text-slate-900 shadow-sm" data-filter="all">All Orders</button>
+                        <button onclick="setFilter('pending')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900" data-filter="pending">Pending</button>
+                        <button onclick="setFilter('confirm')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900" data-filter="confirm">Confirm</button>
+                        <button onclick="setFilter('packeging')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900" data-filter="packeging">Packeging</button>
+                        <button onclick="setFilter('processing')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900" data-filter="processing">Processing</button>
+                        <button onclick="setFilter('return')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900" data-filter="return">Return</button>
+                        <button onclick="setFilter('delivery')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900" data-filter="delivery">Delivery</button>
+                        <button onclick="setFilter('not_set')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900" data-filter="not_set">Not Set</button>
+                    </div>
+                </div>
+
+                <!-- Orders Container / Cards Grid -->
+                <div id="ordersContainer" class="space-y-4">
+                    <!-- Dynamic Orders or Skeletons will be injected here -->
+                </div>
+
+                <!-- Pagination Controls -->
+                <div id="paginationContainer" class="flex items-center justify-between bg-white px-4 py-3 rounded-2xl border border-slate-200/80 shadow-sm hidden">
+                    <button id="prevBtn" onclick="prevPage()" disabled class="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        Previous
+                    </button>
+                    <span id="pageIndicator" class="text-xs font-medium text-slate-500">Page 1</span>
+                    <button id="nextBtn" onclick="nextPage()" disabled class="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                        Next
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Order Details Full Modal -->
+    <div id="orderModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-0 sm:p-4 transition-opacity opacity-0 duration-200">
+        <div id="modalContentWrapper" class="bg-white w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-3xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden transform scale-95 transition-transform duration-200">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-white sticky top-0 z-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center text-brand-500 font-semibold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    </div>
+                    <div>
+                        <h3 id="modalOrderIdTitle" class="font-bold text-slate-900 text-base">Order Details</h3>
+                        <p id="modalOrderDateSub" class="text-xs text-slate-400">Complete transaction overview</p>
+                    </div>
+                </div>
+                <button onclick="closeOrderModal()" class="p-2 text-slate-400 hover:text-slate-600 rounded-xl hover:bg-slate-100 transition-colors" aria-label="Close modal">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <!-- Modal Body Content -->
+            <div id="modalBodyContent" class="p-6 overflow-y-auto custom-scrollbar space-y-6 flex-1">
+                <!-- Injected via JS -->
+            </div>
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-3">
+                <button onclick="closeOrderModal()" class="px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 transition-all">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Modular Imports -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, query, where, orderBy, limit, startAfter, endBefore, limitToLast, getDocs, getCountFromServer, doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Firebase Configuration for GHOTI MARKET (projectId: ghotimarket)
+        const firebaseConfig = {
+  apiKey: "AIzaSyBUhNhYvuo_FTvZ5RZR6Gn-4hsUY21S0XE",
+  authDomain: "ghotimarket.firebaseapp.com",
+  databaseURL: "https://ghotimarket-default-rtdb.firebaseio.com",
+  projectId: "ghotimarket",
+  storageBucket: "ghotimarket.firebasestorage.app",
+  messagingSenderId: "481257644093",
+  appId: "1:481257644093:web:0dfc3699d6b3c86afeca54",
+  measurementId: "G-4SR8V2EKC1"
+};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let allUserOrders = []; // Cached client orders for fast local real-time search & filter
+        let currentFilter = 'all';
+        let searchQuery = '';
+        
+        // Pagination state tracking
+        let lastVisibleDoc = null;
+        let firstVisibleDoc = null;
+        let paginationStack = [];
+        let currentPageIndex = 0;
+        const PAGE_SIZE = 20;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            onAuthStateChanged(auth, async (user) => {
+                const authLoadingEl = document.getElementById('authLoading');
+                const appLayoutEl = document.getElementById('appLayout');
+
+                if (!user) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                currentUser = user;
+                document.getElementById('sidebarUserEmail').textContent = user.email || user.uid;
+                
+                authLoadingEl.classList.add('hidden');
+                appLayoutEl.classList.remove('hidden');
+
+                // Initialize Dashboard Data
+                await loadStatistics();
+                await fetchOrdersData();
+            });
+
+            // Search input live listener with debounce
+            let searchTimeout;
+            const searchInputEl = document.getElementById('searchInput');
+            if (searchInputEl) {
+                searchInputEl.addEventListener('input', (e) => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        searchQuery = e.target.value.trim().toLowerCase();
+                        renderOrders();
+                    }, 250);
+                });
+            }
+        });
+
+        // Global Logout handler
+        window.handleLogout = async () => {
+            try {
+                await signOut(auth);
+                window.location.href = 'login.html';
+            } catch (err) {
+                showToast("Failed to logout securely.", "error");
+            }
+        };
+
+        // Utility: XSS Escaping
+        window.escapeHTML = function(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        };
+
+        // Utility: Format Currency
+        window.formatCurrency = function(amount) {
+            const num = Number(amount) || 0;
+            return `৳${num.toLocaleString('en-BD')}`;
+        };
+
+        // Utility: Format Date Safely
+        window.formatDate = function(timestamp) {
+            if (!timestamp) return 'Date unavailable';
+            try {
+                let dateObj;
+                if (typeof timestamp.toDate === 'function') {
+                    dateObj = timestamp.toDate();
+                } else if (timestamp.seconds) {
+                    dateObj = new Date(timestamp.seconds * 1000);
+                } else {
+                    dateObj = new Date(timestamp);
+                }
+                if (isNaN(dateObj.getTime())) return 'Date unavailable';
+                return dateObj.toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                }) + ', ' + dateObj.toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                });
+            } catch (e) {
+                return 'Date unavailable';
+            }
+        };
+
+        // Status configuration helpers
+        window.getStatusConfig = function(status) {
+            const s = (status || '').toLowerCase().trim();
+            switch(s) {
+                case 'pending':
+                    return { label: 'Pending', bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', dot: 'bg-amber-500' };
+                case 'confirm':
+                    return { label: 'Confirm', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', dot: 'bg-blue-500' };
+                case 'packeging':
+                    return { label: 'Packeging', bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', dot: 'bg-purple-500' };
+                case 'processing':
+                    return { label: 'Processing', bg: 'bg-indigo-50', text: 'text-indigo-700', border: 'border-indigo-200', dot: 'bg-indigo-500' };
+                case 'return':
+                    return { label: 'Return', bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200', dot: 'bg-red-500' };
+                case 'delivery':
+                    return { label: 'Delivery', bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', dot: 'bg-emerald-500' };
+                default:
+                    return { label: 'Status Not Set', bg: 'bg-slate-100', text: 'text-slate-600', border: 'border-slate-200', dot: 'bg-slate-400' };
+            }
+        };
+
+        // Toast notification system
+        window.showToast = function(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const isError = type === 'error';
+            
+            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl text-sm font-medium text-white transition-all transform translate-y-2 opacity-0 ${isError ? 'bg-red-600' : 'bg-slate-900'}`;
+            toast.innerHTML = `
+                <svg class="w-5 h-5 shrink-0 ${isError ? 'text-red-200' : 'text-emerald-400'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    ${isError ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>'}
+                </svg>
+                <span>${escapeHTML(message)}</span>
+            `;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 200);
+            }, 3000);
+        };
+
+        // Load Statistics using server count queries
+        async function loadStatistics() {
+            if (!currentUser) return;
+            try {
+                const baseColl = collection(db, "landing_order");
+                const userId = currentUser.uid;
+                const userEmail = currentUser.email;
+
+                // Total count
+                const totalQuery = query(baseColl, where("landingUserId", "==", userId), where("landingUserEmail", "==", userEmail));
+                const totalSnap = await getCountFromServer(totalQuery);
+                document.getElementById('statTotal').textContent = totalSnap.data().count;
+
+                // Status specific counts
+                const statuses = ['pending', 'confirm', 'packeging', 'processing', 'delivery'];
+                for (const st of statuses) {
+                    try {
+                        const q = query(baseColl, where("landingUserId", "==", userId), where("landingUserEmail", "==", userEmail), where("status", "==", st));
+                        const snap = await getCountFromServer(q);
+                        const el = document.getElementById(`stat${st.charAt(0).toUpperCase() + st.slice(1)}`);
+                        if (el) el.textContent = snap.data().count;
+                    } catch (e) {
+                        const el = document.getElementById(`stat${st.charAt(0).toUpperCase() + st.slice(1)}`);
+                        if (el) el.textContent = '0';
+                    }
+                }
+            } catch (err) {
+                console.error("Error loading statistics:", err);
+            }
+        }
+
+        // Fetch Orders Data with Firestore pagination & isolation
+        window.fetchOrdersData = async function(direction = 'initial') {
+            if (!currentUser) return;
+            const container = document.getElementById('ordersContainer');
+            
+            // Render Skeleton Loaders
+            container.innerHTML = Array(3).fill(0).map(() => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm animate-pulse space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div class="h-4 bg-slate-200 rounded w-1/4"></div>
+                        <div class="h-6 bg-slate-200 rounded w-20"></div>
+                    </div>
+                    <div class="flex gap-4 items-center">
+                        <div class="w-16 h-16 bg-slate-200 rounded-xl shrink-0"></div>
+                        <div class="space-y-2 flex-1">
+                            <div class="h-4 bg-slate-200 rounded w-3/4"></div>
+                            <div class="h-3 bg-slate-200 rounded w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            try {
+                const baseColl = collection(db, "landing_order");
+                let q = query(
+                    baseColl,
+                    where("landingUserId", "==", currentUser.uid),
+                    where("landingUserEmail", "==", currentUser.email),
+                    orderBy("createdAt", "desc"),
+                    limit(PAGE_SIZE)
+                );
+
+                const snapshot = await getDocs(q);
+                allUserOrders = [];
+                
+                snapshot.forEach(docSnap => {
+                    allUserOrders.push({
+                        id: docSnap.id,
+                        ...docSnap.data()
+                    });
+                });
+
+                renderOrders();
+                await loadStatistics();
+            } catch (err) {
+                console.error("Firestore query error:", err);
+                container.innerHTML = `
+                    <div class="bg-white p-8 rounded-2xl border border-red-100 shadow-sm text-center space-y-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-500 rounded-xl flex items-center justify-center mx-auto">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg">Unable to load orders (Index Required)</h3>
+                        <p class="text-sm text-slate-500 max-w-md mx-auto">Firebase requires a composite index to run this query. Click the button below to create it automatically in your Firebase Console.</p>
+                        
+                        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                            <a href="https://console.firebase.google.com/v1/r/project/ghotimarket/firestore/indexes?create_composite=ClJwcm9qZWN0cy9naG90aW1hcmtldC9kYXRhYmFzZXMvKGRlZmF1bHQpL2NvbGxlY3Rpb25Hcm91cHMvbGFuZGluZ19vcmRlci9pbmRleGVzL18QARoNCglsYW5kaW5nVXNlchABGhIKEmxhbmRpbmdVc2VyRW1haWwQARoNCgljcmVhdGVkQXQQAhoMCghfX25hbWVfXwE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-500 border border-brand-600 rounded-xl text-sm font-medium text-white hover:bg-brand-600 shadow-sm transition-all">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                Create Firebase Index Automatically
+                            </a>
+                            <button onclick="fetchOrdersData()" class="px-4 py-2.5 bg-slate-100 text-slate-700 rounded-xl text-sm font-medium hover:bg-slate-200 transition-all">Try Again</button>
+                        </div>
+                    </div>
+                `;
+            }
+        };
+
+        // Filter management
+        window.setFilter = function(filterKey) {
+            currentFilter = filterKey;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === filterKey) {
+                    btn.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all bg-white text-slate-900 shadow-sm";
+                } else {
+                    btn.className = "filter-btn px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all text-slate-600 hover:text-slate-900";
+                }
+            });
+            renderOrders();
+        };
+
+        // Render orders based on local cache, search query, and active filter
+        window.renderOrders = function() {
+            const container = document.getElementById('ordersContainer');
+            
+            let filtered = allUserOrders.filter(order => {
+                // Status Filter
+                if (currentFilter !== 'all') {
+                    const st = (order.status || '').toLowerCase().trim();
+                    if (currentFilter === 'not_set') {
+                        if (order.status !== undefined && order.status !== null && st !== '') return false;
+                    } else {
+                        if (st !== currentFilter) return false;
+                    }
+                }
+                // Search Query Filter
+                if (searchQuery) {
+                    const q = searchQuery;
+                    const matchName = (order.name || '').toLowerCase().includes(q);
+                    const matchPhone = (order.phone || '').toLowerCase().includes(q);
+                    const matchProd = (order.productName || '').toLowerCase().includes(q);
+                    const matchSlug = (order.productSlug || '').toLowerCase().includes(q);
+                    const matchDist = (order.jela || '').toLowerCase().includes(q);
+                    const matchThana = (order.thanaUpajela || '').toLowerCase().includes(q);
+                    const matchDiv = (order.vibag || '').toLowerCase().includes(q);
+                    const matchAddr = (order.fullAddress || '').toLowerCase().includes(q);
+                    const matchId = (order.id || '').toLowerCase().includes(q);
+
+                    if (!matchName && !matchPhone && !matchProd && !matchSlug && !matchDist && !matchThana && !matchDiv && !matchAddr && !matchId) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white p-12 rounded-2xl border border-slate-200/80 shadow-sm text-center space-y-4">
+                        <div class="w-16 h-16 bg-brand-50 text-brand-500 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">No orders found</h3>
+                            <p class="text-sm text-slate-500 mt-1 max-w-sm mx-auto">Orders from your landing pages will appear here once customers place them.</p>
+                        </div>
+                        <button onclick="fetchOrdersData()" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-slate-800 transition-all shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                            Refresh Orders
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(order => {
+                const statusCfg = getStatusConfig(order.status);
+                const shortId = order.id.substring(0, 8) + '...';
+                const formattedDate = formatDate(order.createdAt);
+                
+                // Product Image fallback
+                let prodImg = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=150&auto=format&fit=crop&q=80';
+                if (Array.isArray(order.productImage) && order.productImage.length > 0 && order.productImage[0]) {
+                    prodImg = order.productImage[0];
+                } else if (typeof order.productImage === 'string' && order.productImage.trim() !== '') {
+                    prodImg = order.productImage;
+                }
+
+                // Variants formatting
+                let variantsHTML = '';
+                if (Array.isArray(order.selectedVariants) && order.selectedVariants.length > 0) {
+                    variantsHTML = `
+                        <div class="flex flex-wrap gap-1.5 mt-2">
+                            ${order.selectedVariants.map(v => `
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100 rounded-lg text-xs font-medium text-slate-700">
+                                    <span class="text-slate-400">${escapeHTML(v.name)}:</span> 
+                                    <span class="font-semibold">${escapeHTML(v.value)}</span>
+                                    ${Number(v.extraPrice) > 0 ? `<span class="text-brand-600 font-semibold">(+${formatCurrency(v.extraPrice)})</span>` : ''}
+                                </span>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                // Note
+                let noteHTML = '';
+                if (order.orderNote && order.orderNote.trim() !== '') {
+                    noteHTML = `
+                        <div class="mt-3 p-3 bg-amber-50/60 border border-amber-200/60 rounded-xl text-xs text-slate-700 flex items-start gap-2">
+                            <svg class="w-4 h-4 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+                            <div>
+                                <span class="font-semibold text-amber-900 block mb-0.5">Customer Note:</span>
+                                ${escapeHTML(order.orderNote)}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Product Link
+                let productUrl = order.productSlug ? `https://www.ghotimarket.com/landing/product?${escapeHTML(order.productSlug)}` : null;
+
+                return `
+                    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col">
+                        <!-- Order Card Header -->
+                        <div class="px-5 py-4 border-b border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-between gap-3">
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-1.5 font-mono text-xs font-bold text-slate-700 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shadow-xs">
+                                    <span>#${escapeHTML(shortId)}</span>
+                                    <button onclick="copyOrderId('${escapeHTML(order.id)}')" class="text-slate-400 hover:text-slate-700 transition-colors" title="Copy ID">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-slate-400 flex items-center gap-1">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    ${escapeHTML(formattedDate)}
+                                </span>
+                            </div>
+                            
+                            <!-- Status Dropdown Control -->
+                            <div class="flex items-center gap-2">
+                                <div class="relative">
+                                    <select onchange="updateOrderStatus('${escapeHTML(order.id)}', this.value, this)" 
+                                        class="appearance-none pl-3 pr-8 py-1.5 rounded-xl text-xs font-semibold ${statusCfg.bg} ${statusCfg.text} border ${statusCfg.border} focus:outline-none focus:ring-2 focus:ring-brand-500/20 cursor-pointer shadow-xs transition-all">
+                                        <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                        <option value="confirm" ${order.status === 'confirm' ? 'selected' : ''}>Confirm</option>
+                                        <option value="packeging" ${order.status === 'packeging' ? 'selected' : ''}>Packeging</option>
+                                        <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>Processing</option>
+                                        <option value="return" ${order.status === 'return' ? 'selected' : ''}>Return</option>
+                                        <option value="delivery" ${order.status === 'delivery' ? 'selected' : ''}>Delivery</option>
+                                        ${!order.status ? '<option value="" selected disabled>Status Not Set</option>' : ''}
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none text-slate-500">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Body: Product & Customer info Grid -->
+                        <div class="p-5 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                            
+                            <!-- Product Column (7 cols) -->
+                            <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <img src="${escapeHTML(prodImg)}" alt="Product" class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100">
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-slate-900 text-sm sm:text-base truncate">${escapeHTML(order.productName || 'Product')}</h4>
+                                        <p class="text-xs text-slate-400 font-mono mt-0.5">Slug: ${escapeHTML(order.productSlug || 'N/A')}</p>
+                                        ${variantsHTML}
+                                    </div>
+                                </div>
+                                ${noteHTML}
+                            </div>
+
+                            <!-- Customer & Delivery Column (5 cols) -->
+                            <div class="lg:col-span-5 bg-slate-50/80 p-4 rounded-xl border border-slate-100 flex flex-col justify-between space-y-3">
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wider">Customer Details</span>
+                                    </div>
+                                    <p class="font-semibold text-slate-800 text-sm">${escapeHTML(order.name || 'Unnamed')}</p>
+                                    ${order.phone ? `
+                                        <a href="tel:${escapeHTML(order.phone)}" class="inline-flex items-center gap-1.5 text-xs font-medium text-brand-600 hover:text-brand-700 mt-1">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                            ${escapeHTML(order.phone)}
+                                        </a>
+                                    ` : '<p class="text-xs text-slate-400 mt-1">Phone not provided</p>'}
+                                    <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                                        ${escapeHTML(order.fullAddress || '')} 
+                                        ${order.thanaUpajela ? `, ${escapeHTML(order.thanaUpajela)}` : ''} 
+                                        ${order.jela ? `, ${escapeHTML(order.jela)}` : ''} 
+                                        ${order.vibag ? `, ${escapeHTML(order.vibag)}` : ''}
+                                    </p>
+                                </div>
+
+                                <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">Location: <strong class="text-slate-700">${escapeHTML(order.deliveryLocation || 'N/A')}</strong></span>
+                                    <span class="text-slate-500">Charge: <strong class="text-slate-700">${formatCurrency(order.deliveryCharge || 0)}</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer: Pricing breakdown & Actions -->
+                        <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                            <div class="flex items-center gap-4 text-xs text-slate-500">
+                                <span>Price: <strong class="text-slate-700">${formatCurrency(order.price)}</strong></span>
+                                ${Number(order.variantExtraPrice) > 0 ? `<span>Variant Extra: <strong class="text-slate-700">${formatCurrency(order.variantExtraPrice)}</strong></span>` : ''}
+                                <span>Delivery: <strong class="text-slate-700">${formatCurrency(order.deliveryCharge)}</strong></span>
+                                <div class="pl-3 border-l border-slate-200 flex items-center gap-1.5">
+                                    <span class="font-bold text-slate-900 text-sm">Total: <span class="text-brand-600">${formatCurrency(order.totalPrice || order.price)}</span></span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                ${productUrl ? `
+                                    <a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-xs">
+                                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                        View Product
+                                    </a>
+                                ` : ''}
+                                <button onclick="openOrderModal('${escapeHTML(order.id)}')" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-900 text-white rounded-xl text-xs font-medium hover:bg-slate-800 transition-all shadow-xs">
+                                    View Full Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        };
+
+        // Copy Order ID to Clipboard
+        window.copyOrderId = function(id) {
+            navigator.clipboard.writeText(id).then(() => {
+                showToast("Order ID copied to clipboard");
+            }).catch(() => {
+                showToast("Failed to copy Order ID", "error");
+            });
+        };
+
+        // Update Order Status securely with strict field protection
+        window.updateOrderStatus = async function(orderId, newStatus, selectElement) {
+            if (!currentUser) return;
+            selectElement.disabled = true;
+            
+            try {
+                const orderRef = doc(db, "landing_order", orderId);
+                await updateDoc(orderRef, {
+                    status: newStatus
+                });
+
+                // Update local state cache
+                const index = allUserOrders.findIndex(o => o.id === orderId);
+                if (index !== -1) {
+                    allUserOrders[index].status = newStatus;
+                }
+
+                showToast("Order status updated successfully");
+                renderOrders();
+                await loadStatistics();
+            } catch (err) {
+                console.error("Failed to update status:", err);
+                showToast("Failed to update order status", "error");
+                fetchOrdersData(); // Revert/Refresh UI on failure
+            } finally {
+                selectElement.disabled = false;
+            }
+        };
+
+        // Modal Handler: Open Full Details
+        window.openOrderModal = function(orderId) {
+            const order = allUserOrders.find(o => o.id === orderId);
+            if (!order) return;
+
+            const modal = document.getElementById('orderModal');
+            const wrapper = document.getElementById('modalContentWrapper');
+            const titleEl = document.getElementById('modalOrderIdTitle');
+            const dateSubEl = document.getElementById('modalOrderDateSub');
+            const bodyEl = document.getElementById('modalBodyContent');
+
+            titleEl.textContent = `Order #${order.id}`;
+            dateSubEl.textContent = `Created on ${formatDate(order.createdAt)}`;
+
+            let prodImg = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=150&auto=format&fit=crop&q=80';
+            if (Array.isArray(order.productImage) && order.productImage.length > 0 && order.productImage[0]) {
+                prodImg = order.productImage[0];
+            } else if (typeof order.productImage === 'string' && order.productImage.trim() !== '') {
+                prodImg = order.productImage;
+            }
+
+            let variantsHTML = '';
+            if (Array.isArray(order.selectedVariants) && order.selectedVariants.length > 0) {
+                variantsHTML = `
+                    <div class="mt-4 pt-4 border-t border-slate-100">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Selected Variants</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${order.selectedVariants.map(v => `
+                                <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100 text-xs">
+                                    <span class="text-slate-500 font-medium">${escapeHTML(v.name)}</span>
+                                    <span class="font-bold text-slate-800">${escapeHTML(v.value)} <span class="text-brand-600 font-semibold">(+${formatCurrency(v.extraPrice)})</span></span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            let noteHTML = '';
+            if (order.orderNote) {
+                noteHTML = `
+                    <div class="p-4 bg-amber-50/70 border border-amber-200/60 rounded-2xl">
+                        <h4 class="text-xs font-bold text-amber-900 uppercase tracking-wider mb-1">Customer Order Note</h4>
+                        <p class="text-sm text-slate-700 leading-relaxed">${escapeHTML(order.orderNote)}</p>
+                    </div>
+                `;
+            }
+
+            bodyEl.innerHTML = `
+                <!-- Status & ID info -->
+                <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div>
+                        <span class="text-xs text-slate-400 block mb-0.5">Firebase Document ID</span>
+                        <span class="font-mono text-xs font-bold text-slate-700">${escapeHTML(order.id)}</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 block mb-0.5">Current Status</span>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold ${getStatusConfig(order.status).bg} ${getStatusConfig(order.status).text}">
+                            ${escapeHTML(getStatusConfig(order.status).label)}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Product Information -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Product Information</h4>
+                    <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
+                        <img src="${escapeHTML(prodImg)}" alt="Product" class="w-20 h-20 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100">
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-bold text-slate-900 text-base">${escapeHTML(order.productName || 'Product')}</h3>
+                            <p class="text-xs text-slate-400 font-mono mt-0.5">Slug: ${escapeHTML(order.productSlug || 'N/A')}</p>
+                            ${order.productSlug ? `
+                                <a href="https://www.ghotimarket.com/landing/product?${escapeHTML(order.productSlug)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-brand-600 hover:text-brand-700 mt-2">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                    View Live Product Page
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                    ${variantsHTML}
+                </div>
+
+                <!-- Customer Information -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Customer & Delivery Information</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">Customer Name</span>
+                                <span class="font-semibold text-slate-800 text-sm">${escapeHTML(order.name || 'N/A')}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">Phone Number</span>
+                                ${order.phone ? `<a href="tel:${escapeHTML(order.phone)}" class="font-semibold text-brand-600 text-sm">${escapeHTML(order.phone)}</a>` : '<span class="text-xs text-slate-400">N/A</span>'}
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">Delivery Location Type</span>
+                                <span class="font-semibold text-slate-800 text-sm">${escapeHTML(order.deliveryLocation || 'N/A')}</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">Division</span>
+                                <span class="font-semibold text-slate-800 text-sm">${escapeHTML(order.vibag || 'N/A')}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">District</span>
+                                <span class="font-semibold text-slate-800 text-sm">${escapeHTML(order.jela || 'N/A')}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">Thana / Upazila</span>
+                                <span class="font-semibold text-slate-800 text-sm">${escapeHTML(order.thanaUpajela || 'N/A')}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 p-4 bg-white rounded-2xl border border-slate-200 shadow-xs">
+                        <span class="text-xs text-slate-400 block mb-1">Full Delivery Address</span>
+                        <p class="text-sm font-medium text-slate-800">${escapeHTML(order.fullAddress || 'N/A')}</p>
+                    </div>
+                </div>
+
+                ${noteHTML}
+
+                <!-- Pricing Breakdown -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Price Summary</h4>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 shadow-xs space-y-2.5 text-sm">
+                        <div class="flex items-center justify-between text-slate-600">
+                            <span>Base Product Price</span>
+                            <span class="font-medium text-slate-900">${formatCurrency(order.price)}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-slate-600">
+                            <span>Variant Extra Price</span>
+                            <span class="font-medium text-slate-900">${formatCurrency(order.variantExtraPrice)}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-slate-600">
+                            <span>Delivery Charge</span>
+                            <span class="font-medium text-slate-900">${formatCurrency(order.deliveryCharge)}</span>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200 flex items-center justify-between font-bold text-base text-slate-900">
+                            <span>Total Amount</span>
+                            <span class="text-brand-600">${formatCurrency(order.totalPrice || order.price)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.flex;
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('flex');
+                wrapper.classList.remove('scale-95');
+                wrapper.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Modal Handler: Close
+        window.closeOrderModal = function() {
+            const modal = document.getElementById('orderModal');
+            const wrapper = document.getElementById('modalContentWrapper');
+            
+            modal.classList.add('opacity-0');
+            wrapper.classList.remove('scale-100');
+            wrapper.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 200);
+        };
+
+        // Close modal on ESC key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeOrderModal();
+            }
+        });
+    </script>
+</body>
+</html>
