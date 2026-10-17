@@ -625,7 +625,7 @@
                         <input type="checkbox" id="rememberMe" class="checkbox-input">
                         <span>আমাকে মনে রাখুন</span>
                     </label>
-                    <a href="forgot-password.html" class="forgot-link">পাসওয়ার্ড ভুলে গেছেন?</a>
+                    <a href="forgot-password" class="forgot-link">পাসওয়ার্ড ভুলে গেছেন?</a>
                 </div>
 
                 <!-- Submit Button -->
@@ -636,7 +636,7 @@
             </form>
 
             <div class="form-footer-link">
-                এখনো একাউন্ট নেই? <a href="signup.html">একাউন্ট তৈরি করুন</a>
+                এখনো একাউন্ট নেই? <a href="/signup">একাউন্ট তৈরি করুন</a>
             </div>
 
             <footer class="site-footer">
@@ -765,7 +765,7 @@
 
                 // All checks passed -> Redirect to Dashboard
                 isRedirecting = true;
-                window.location.href = "dashboard.html";
+                window.location.href = "/dashboard";
 
             } catch (error) {
                 console.error("Verification Error:", error);
