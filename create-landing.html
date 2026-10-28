@@ -644,8 +644,7 @@
         </div>
 
         <div id="alertBox" class="alert"></div>
-
-        <form id="productForm">
+        <form id="productForm" novalidate>
             <!-- Section 01 — Product Media -->
             <div class="dashboard-card">
                 <div class="section-header">
@@ -695,8 +694,11 @@
                         <input type="text" id="productName" placeholder="e.g. Premium Cotton Panjabi" required>
                     </div>
                     <div class="form-group">
-                        <label>Headline (Optional)</label>
-                        <input type="text" id="headLine" placeholder="e.g. আপনার স্টাইল হোক আরও আকর্ষণীয়">
+                        <label>Headline *</label>
+                   
+<input type="text" id="headLine"
+    placeholder="আপনার পণ্যের আকর্ষণীয় শিরোনাম লিখুন"
+    required>
                     </div>
                 </div>
             </div>
@@ -719,8 +721,11 @@
                         <input type="number" id="price" min="1" placeholder="850" required>
                     </div>
                     <div class="form-group">
-                        <label>Old Price (BDT) (Optional)</label>
-                        <input type="number" id="oldPrice" min="0" placeholder="1200">
+                        <label>Old Price (BDT)</label>
+                      <input type="number" id="oldPrice"
+    min="1"
+    placeholder="পণ্যের পূর্বের মূল্য লিখুন"
+    required>
                     </div>
                 </div>
             </div>
@@ -777,14 +782,18 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label>Phone Number (Optional)</label>
-                        <input type="tel" id="phoneNumber" placeholder="017XXXXXXXX">
-                        <div class="helper-text">Optional • Customer contact number</div>
+                        <label>Phone Number</label>
+                        <input type="tel" id="phoneNumber"
+    placeholder="017XXXXXXXX"
+    required>
+                      <div class="helper-text">Required • Customer contact number</div>
                     </div>
                     <div class="form-group">
-                        <label>WhatsApp Number (Optional)</label>
-                        <input type="tel" id="whatsappNumber" placeholder="017XXXXXXXX">
-                        <div class="helper-text">Optional • Automatically converted to WhatsApp link</div>
+                        <label>WhatsApp Number</label>
+                        <input type="tel" id="whatsappNumber"
+    placeholder="017XXXXXXXX"
+    required>
+                        <div class="helper-text">Required • WhatsApp contact number</div>
                     </div>
                 </div>
             </div>
@@ -1228,138 +1237,146 @@
         // Form Submit Handler
         // ==========================================
         productForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (isProcessingOrUploading) return;
+    e.preventDefault();
+    if (isProcessingOrUploading) return;
 
-            if (!currentUserData) {
-                showAlert("অনুমোদন যাচাই করা হয়নি। দয়া করে অপেক্ষা করুন।");
+    // ===== তোমার ইচ্ছা মতো সব ফিল্ড বাধ্যতামূলক =====
+    const requiredFields = [
+        'productName',
+        'headLine',
+        'price',
+        'oldPrice',
+        'productDescription',
+        'phoneNumber',
+        'whatsappNumber'
+    ];
+
+    for (const id of requiredFields) {
+        const field = document.getElementById(id);
+        if (!field.value.trim()) {
+            showAlert(`দয়া করে ${id} পূরণ করুন`, "error");
+            field.focus();
+            return;
+        }
+    }
+
+    if (!currentUserData) {
+        showAlert("অনুমোদন যাচাই করা হয়নি। দয়া করে অপেক্ষা করুন।");
+        return;
+    }
+
+    if (selectedFiles.length === 0) {
+        showAlert("কমপক্ষে একটি প্রোডাক্ট ছবি যোগ করুন।");
+        return;
+    }
+
+    for (const item of selectedFiles) {
+        if (item.status === "processing") {
+            showAlert("ইমেজ প্রসেসিং শেষ হওয়ার জন্য অপেক্ষা করুন।");
+            return;
+        }
+        if (item.status === "error") {
+            showAlert("কিছু ইমেজে সমস্যা রয়েছে।");
+            return;
+        }
+    }
+
+    const productName = document.getElementById('productName').value.trim();
+    const productDescription = document.getElementById('productDescription').value.trim();
+    const headLine = document.getElementById('headLine').value.trim();
+    const priceVal = Number(document.getElementById('price').value);
+    const oldPriceVal = Number(document.getElementById('oldPrice').value);
+    const phoneInput = document.getElementById('phoneNumber').value.trim();
+    const whatsappInput = document.getElementById('whatsappNumber').value.trim();
+    const active = document.getElementById('activeStatus').checked;
+
+    // Price validation
+    if (isNaN(priceVal) || priceVal <= 0 || isNaN(oldPriceVal) || oldPriceVal <= 0) {
+        showAlert("দয়া করে সঠিক মূল্য লিখুন", "error");
+        return;
+    }
+
+    // Phone validation - তোমার ইচ্ছা মতো বাধ্যতামূলক
+    if (!/^01[3-9]\d{8}$/.test(phoneInput)) {
+        showAlert("দয়া করে সঠিক ফোন নম্বর লিখুন (017XXXXXXXX)", "error");
+        return;
+    }
+
+    // WhatsApp validation - তোমার ইচ্ছা মতো বাধ্যতামূলক
+    const normalizedWhatsApp = normalizeWhatsAppNumber(whatsappInput);
+    if (!normalizedWhatsApp) {
+        showAlert("দয়া করে সঠিক WhatsApp নম্বর লিখুন", "error");
+        return;
+    }
+
+    // Variants parsing
+    const variants = [];
+    const variantCards = variantsContainer.querySelectorAll('.variant-card');
+    for (const card of variantCards) {
+        const vName = card.querySelector('.variant-name').value.trim();
+        if (!vName) {
+            showAlert("Variant Name খালি রাখা যাবে না।");
+            return;
+        }
+        const values = [];
+        const valRows = card.querySelectorAll('.variant-value-row');
+        for (const row of valRows) {
+            const valText = row.querySelector('.v-value').value.trim();
+            const extraP = Number(row.querySelector('.v-price').value);
+            if (!valText || isNaN(extraP)) {
+                showAlert("Variant Value অথবা Extra Price সঠিক নয়।");
                 return;
             }
+            values.push({ value: valText, extraPrice: extraP });
+        }
+        variants.push({ name: vName, values: values });
+    }
 
-            if (selectedFiles.length === 0) {
-                showAlert("কমপক্ষে একটি প্রোডাক্ট ছবি যোগ করুন।");
-                return;
-            }
+    isProcessingOrUploading = true;
+    submitBtn.disabled = true;
+    progressBox.style.display = "block";
+    progressBox.textContent = "Processing & Uploading Watermarked Images...";
 
-            for (const item of selectedFiles) {
-                if (item.status === "processing") {
-                    showAlert("ইমেজ প্রসেসিং শেষ হওয়ার জন্য অপেক্ষা করুন।");
-                    return;
-                }
-                if (item.status === "error") {
-                    showAlert("কিছু ইমেজে সমস্যা রয়েছে। দয়া করে সেকশন থেকে সেগুলো সরিয়ে দিন।");
-                    return;
-                }
-            }
+    try {
+        const imageUrls = await uploadImagesToImgBB();
+        progressBox.textContent = "Generating Unique Product Slug...";
+        let baseSlug = generateSlug(productName);
+        if (!baseSlug) baseSlug = "product-" + Date.now();
+        const productSlug = await getUniqueSlug(baseSlug);
 
-            const productName = document.getElementById('productName').value.trim();
-            const productDescription = document.getElementById('productDescription').value.trim();
-            const price = Number(document.getElementById('price').value);
-            const oldPriceVal = document.getElementById('oldPrice').value;
-            const oldPrice = oldPriceVal ? Number(oldPriceVal) : null;
-            const headLine = document.getElementById('headLine').value.trim() || null;
-            const phoneInput = document.getElementById('phoneNumber').value.trim();
-            const whatsappInput = document.getElementById('whatsappNumber').value.trim();
-            const active = document.getElementById('activeStatus').checked;
+        progressBox.textContent = "Saving Product Data to Firestore...";
 
-            if (!productName || !productDescription || isNaN(price) || price <= 0) {
-                showAlert("সঠিক মূল্য ও প্রয়োজনীয় ফিল্ডগুলো পূরণ করুন।");
-                return;
-            }
+        const productData = {
+            productImage: imageUrls,
+            productName: productName,
+            productDescription: productDescription,
+            price: priceVal,
+            oldPrice: oldPriceVal,
+            headLine: headLine,
+            variants: variants,
+            productSlug: productSlug,
+            uid: currentUserData.uid,
+            email: currentUserData.email,
+            phone: phoneInput,
+            whatsApp: normalizedWhatsApp,
+            active: active,
+            createdAt: serverTimestamp()
+        };
 
-            let normalizedWhatsApp = null;
-            if (whatsappInput) {
-                normalizedWhatsApp = normalizeWhatsAppNumber(whatsappInput);
-                if (!normalizedWhatsApp) {
-                    showAlert("সঠিক WhatsApp নম্বর দিন। উদাহরণ: 017XXXXXXXX");
-                    return;
-                }
-            }
+        await addDoc(collection(db, "landing_product"), productData);
+        showAlert("প্রোডাক্ট সফলভাবে সংরক্ষণ করা হয়েছে!", "success");
+        progressBox.textContent = "Product Created Successfully!";
+        setTimeout(() => { window.location.href = "/success"; }, 800);
 
-            const phone = phoneInput ? phoneInput : null;
-
-            // Variants parsing
-            const variants = [];
-            const variantCards = variantsContainer.querySelectorAll('.variant-card');
-            for (const card of variantCards) {
-                const vName = card.querySelector('.variant-name').value.trim();
-                if (!vName) {
-                    showAlert("Variant Name খালি রাখা যাবে না।");
-                    return;
-                }
-                const values = [];
-                const valRows = card.querySelectorAll('.variant-value-row');
-                for (const row of valRows) {
-                    const valText = row.querySelector('.v-value').value.trim();
-                    const extraP = Number(row.querySelector('.v-price').value);
-                    if (!valText || isNaN(extraP)) {
-                        showAlert("Variant Value অথবা Extra Price সঠিক নয়।");
-                        return;
-                    }
-                    values.push({ value: valText, extraPrice: extraP });
-                }
-                variants.push({ name: vName, values: values });
-            }
-
-            isProcessingOrUploading = true;
-            submitBtn.disabled = true;
-            progressBox.style.display = "block";
-            progressBox.textContent = "Processing & Uploading Watermarked Images...";
-
-            try {
-                const imageUrls = await uploadImagesToImgBB();
-
-                progressBox.textContent = "Generating Unique Product Slug...";
-                let baseSlug = generateSlug(productName);
-                if (!baseSlug) baseSlug = "product-" + Date.now();
-                const productSlug = await getUniqueSlug(baseSlug);
-
-                progressBox.textContent = "Saving Product Data to Firestore...";
-
-                const productData = {
-                    productImage: imageUrls,
-                    productName: productName,
-                    productDescription: productDescription,
-                    price: price,
-                    oldPrice: oldPrice,
-                    headLine: headLine,
-                    variants: variants,
-                    productSlug: productSlug,
-                    uid: currentUserData.uid,
-                    email: currentUserData.email,
-                    phone: phone,
-                    whatsApp: normalizedWhatsApp,
-                    active: active,
-                    createdAt: serverTimestamp()
-                };
-
-                await addDoc(collection(db, "landing_product"), productData);
-
-                showAlert("প্রোডাক্ট সফলভাবে সংরক্ষণ করা হয়েছে!", "success");
-                progressBox.textContent = "Product Created Successfully!";
-
-                productData.createdAt = "Firestore Server Timestamp";
-                document.getElementById('jsonOutput').textContent = JSON.stringify(productData, null, 2);
-                document.getElementById('jsonPreviewWrapper').style.display = "block";
-
-                document.getElementById('copyJsonBtn').onclick = () => {
-                    navigator.clipboard.writeText(JSON.stringify(productData, null, 2));
-                    showToast("JSON copied successfully", "success");
-                };
-
-                setTimeout(() => {
-                    window.location.href = "success.html";
-                }, 800);
-
-            } catch (error) {
-                console.error(error);
-                showAlert(error.message || "প্রোডাক্ট সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।");
-                isProcessingOrUploading = false;
-                submitBtn.disabled = false;
-                progressBox.style.display = "none";
-                submitBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Save Product & Create Landing Page`;
-            }
-        });
+    } catch (error) {
+        console.error(error);
+        showAlert(error.message || "প্রোডাক্ট সংরক্ষণ করা যায়নি।");
+        isProcessingOrUploading = false;
+        submitBtn.disabled = false;
+        progressBox.style.display = "none";
+        submitBtn.innerHTML = `Save Product & Create Landing Page`;
+    }
+});
     </script>
 </body>
 </html>
