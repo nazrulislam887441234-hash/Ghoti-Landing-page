@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="bn" class="h-full">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8fafc">
+<meta name="description" content="GHOTI LANDING order management dashboard">
+<title>Orders Management | GHOTI LANDING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{colors:{brand:{50:'#fff3ed',100:'#ffe4d6',500:'#FF6B35',600:'#e85520',700:'#c44214'}},fontFamily:{sans:['Inter','Hind Siliguri','sans-serif']}}}};
+</script>
+<style>
+body{font-family:Inter,'Hind Siliguri',sans-serif}.custom-scrollbar::-webkit-scrollbar{width:6px;height:6px}.custom-scrollbar::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:8px}
+.price-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;font-size:13px;color:#475569}.price-row strong{color:#0f172a;text-align:right;white-space:nowrap}.price-total{border-top:1px dashed #cbd5e1;padding-top:12px;margin-top:6px;font-weight:800;font-size:15px;color:#0f172a}.price-total strong{font-size:19px;color:#e85520}.price-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:16px}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-full antialiased">
+<div id="toastContainer" class="fixed top-4 right-4 z-[120] flex flex-col gap-2 pointer-events-none"></div>
+<div id="authLoading" class="fixed inset-0 bg-white z-[100] flex flex-col items-center justify-center">
+<div class="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mb-4"></div><p class="text-slate-600 text-sm font-medium">Authenticating session...</p>
+</div>
+<div id="appLayout" class="hidden min-h-screen lg:flex">
+<aside class="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 fixed inset-y-0">
+<div class="p-6 border-b border-slate-100 flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white text-xl">🛍</div><div><h1 class="font-extrabold text-slate-900">GHOTI</h1><span class="text-xs font-bold text-brand-500 uppercase tracking-wider">Landing Orders</span></div></div>
+<nav class="flex-1 p-4"><div class="px-4 py-3 rounded-xl bg-brand-50 text-brand-600 font-semibold text-sm">▤ &nbsp; Orders Management</div></nav>
+<div class="p-4 border-t border-slate-100"><div class="bg-slate-50 p-3 rounded-xl mb-3"><p id="sidebarUserEmail" class="text-xs font-medium truncate">Loading...</p><p class="text-[10px] text-slate-400 mt-1">Authenticated Seller</p></div><button onclick="handleLogout()" class="w-full px-4 py-2.5 rounded-xl border text-sm hover:bg-red-50 hover:text-red-600">Logout</button></div>
+</aside>
+<div class="flex-1 min-w-0 lg:ml-64">
+<header class="lg:hidden bg-white border-b px-4 py-3 flex justify-between items-center"><b>GHOTI · Orders</b><div class="flex gap-2"><button onclick="fetchOrdersData()" class="p-2 rounded-lg hover:bg-slate-100" aria-label="Refresh">↻</button><button onclick="handleLogout()" class="p-2 rounded-lg hover:bg-red-50" aria-label="Logout">↪</button></div></header>
+<main class="p-4 sm:p-6 lg:p-8 space-y-6 max-w-[1600px] mx-auto">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"><div><h2 class="text-2xl font-extrabold text-slate-900">Order Management</h2><p class="text-sm text-slate-500 mt-1">Manage and track orders from your landing pages.</p></div><button onclick="fetchOrdersData()" class="px-4 py-2.5 bg-white border rounded-xl text-sm font-semibold shadow-sm">↻ Refresh Orders</button></div>
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3" id="statsContainer">
+<div class="bg-white p-4 rounded-2xl border"><p class="text-xs font-bold text-slate-500">TOTAL</p><h3 id="statTotal" class="text-2xl font-extrabold mt-2">—</h3></div>
+<div class="bg-white p-4 rounded-2xl border"><p class="text-xs font-bold text-amber-600">PENDING</p><h3 id="statPending" class="text-2xl font-extrabold mt-2">—</h3></div>
+<div class="bg-white p-4 rounded-2xl border"><p class="text-xs font-bold text-blue-600">CONFIRM</p><h3 id="statConfirm" class="text-2xl font-extrabold mt-2">—</h3></div>
+<div class="bg-white p-4 rounded-2xl border"><p class="text-xs font-bold text-purple-600">PACKAGING</p><h3 id="statPackeging" class="text-2xl font-extrabold mt-2">—</h3></div>
+<div class="bg-white p-4 rounded-2xl border"><p class="text-xs font-bold text-indigo-600">PROCESSING</p><h3 id="statProcessing" class="text-2xl font-extrabold mt-2">—</h3></div>
+<div class="bg-white p-4 rounded-2xl border"><p class="text-xs font-bold text-emerald-600">DELIVERY</p><h3 id="statDelivery" class="text-2xl font-extrabold mt-2">—</h3></div>
+</div>
+<div class="bg-white p-4 rounded-2xl border flex flex-col gap-3">
+<input id="searchInput" type="search" placeholder="Search customer, phone, product, order ID..." class="w-full px-4 py-3 bg-slate-50 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-200">
+<div class="flex gap-2 overflow-x-auto custom-scrollbar pb-1">
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white whitespace-nowrap" data-filter="all" onclick="setFilter('all')">All Orders</button>
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 whitespace-nowrap" data-filter="pending" onclick="setFilter('pending')">Pending</button>
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 whitespace-nowrap" data-filter="confirm" onclick="setFilter('confirm')">Confirm</button>
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 whitespace-nowrap" data-filter="packeging" onclick="setFilter('packeging')">Packaging</button>
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 whitespace-nowrap" data-filter="processing" onclick="setFilter('processing')">Processing</button>
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 whitespace-nowrap" data-filter="return" onclick="setFilter('return')">Return</button>
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 whitespace-nowrap" data-filter="delivery" onclick="setFilter('delivery')">Delivery</button>
+<button class="filter-btn px-3 py-2 rounded-lg text-xs font-bold bg-slate-100 whitespace-nowrap" data-filter="not_set" onclick="setFilter('not_set')">Not Set</button>
+</div></div>
+<div id="ordersContainer" class="space-y-4"><div class="bg-white p-8 rounded-2xl border text-center text-slate-500">Loading orders...</div></div>
+</main>
+</div>
+</div>
+<div id="orderModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-0 sm:p-4">
+<div class="bg-white w-full h-full sm:h-auto sm:max-h-[92vh] sm:max-w-3xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+<div class="px-5 py-4 border-b flex items-center justify-between"><div><h3 id="modalOrderIdTitle" class="font-extrabold">Order Details</h3><p id="modalOrderDateSub" class="text-xs text-slate-500 mt-1"></p></div><button onclick="closeOrderModal()" class="p-2 rounded-lg hover:bg-slate-100 text-xl" aria-label="Close">×</button></div>
+<div id="modalBodyContent" class="p-4 sm:p-6 overflow-y-auto custom-scrollbar space-y-5 flex-1"></div>
+<div class="p-4 border-t bg-slate-50 flex justify-end"><button onclick="closeOrderModal()" class="px-5 py-2.5 bg-white border rounded-xl text-sm font-semibold">Close</button></div>
+</div></div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import {getFirestore,collection,query,where,orderBy,limit,getDocs,getCountFromServer,doc,updateDoc} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig={apiKey:"AIzaSyBUhNhYvuo_FTvZ5RZR6Gn-4hsUY21S0XE",authDomain:"ghotimarket.firebaseapp.com",databaseURL:"https://ghotimarket-default-rtdb.firebaseio.com",projectId:"ghotimarket",storageBucket:"ghotimarket.firebasestorage.app",messagingSenderId:"481257644093",appId:"1:481257644093:web:0dfc3699d6b3c86afeca54",measurementId:"G-4SR8V2EKC1"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+let currentUser=null,allUserOrders=[],currentFilter='all',searchQuery='',searchTimer=null;
+const $=id=>document.getElementById(id);
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const money=value=>'৳'+(Number(value)||0).toLocaleString('en-BD');
+const number=value=>Number.isFinite(Number(value))?Number(value):0;
+function dateText(ts){try{let d=ts?.toDate?ts.toDate():ts?.seconds?new Date(ts.seconds*1000):new Date(ts);if(!ts||isNaN(d.getTime()))return 'Date unavailable';return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+', '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});}catch{return 'Date unavailable';}}
+function statusInfo(status){const s=(status||'').toLowerCase();const map={pending:['Pending','bg-amber-50 text-amber-700 border-amber-200'],confirm:['Confirm','bg-blue-50 text-blue-700 border-blue-200'],packeging:['Packaging','bg-purple-50 text-purple-700 border-purple-200'],processing:['Processing','bg-indigo-50 text-indigo-700 border-indigo-200'],return:['Return','bg-red-50 text-red-700 border-red-200'],delivery:['Delivery','bg-emerald-50 text-emerald-700 border-emerald-200']};return map[s]||['Status Not Set','bg-slate-100 text-slate-600 border-slate-200'];}
+function toast(message,error=false){const el=document.createElement('div');el.className=`pointer-events-auto px-4 py-3 rounded-xl shadow-lg text-sm text-white ${error?'bg-red-600':'bg-slate-900'}`;el.textContent=message;$('toastContainer').appendChild(el);setTimeout(()=>el.remove(),3000);}
+window.handleLogout=async()=>{try{await signOut(auth);location.href='login.html';}catch(e){toast('Failed to logout securely.',true);}};
+window.addEventListener('DOMContentLoaded',()=>{onAuthStateChanged(auth,async user=>{if(!user){location.href='login.html';return;}currentUser=user;$('sidebarUserEmail').textContent=user.email||user.uid;$('authLoading').classList.add('hidden');$('appLayout').classList.remove('hidden');await fetchOrdersData();});$('searchInput').addEventListener('input',e=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>{searchQuery=e.target.value.trim().toLowerCase();renderOrders();},200);});});
+async function loadStatistics(){if(!currentUser)return;const base=collection(db,'landing_order'),conditions=[where('landingUserId','==',currentUser.uid),where('landingUserEmail','==',currentUser.email)];try{const total=await getCountFromServer(query(base,...conditions));$('statTotal').textContent=total.data().count;for(const st of ['pending','confirm','packeging','processing','delivery']){try{const snap=await getCountFromServer(query(base,...conditions,where('status','==',st)));const id='stat'+st.charAt(0).toUpperCase()+st.slice(1);if($(id))$(id).textContent=snap.data().count;}catch(e){const id='stat'+st.charAt(0).toUpperCase()+st.slice(1);if($(id))$(id).textContent='—';}}}catch(e){console.error('Statistics error',e);}}
+window.fetchOrdersData=async()=>{if(!currentUser)return;$('ordersContainer').innerHTML='<div class="bg-white p-8 rounded-2xl border text-center text-slate-500">Loading orders...</div>';try{const q=query(collection(db,'landing_order'),where('landingUserId','==',currentUser.uid),where('landingUserEmail','==',currentUser.email),orderBy('createdAt','desc'),limit(100));const snap=await getDocs(q);allUserOrders=snap.docs.map(d=>({id:d.id,...d.data()}));renderOrders();await loadStatistics();}catch(err){console.error(err);$('ordersContainer').innerHTML=`<div class="bg-white p-8 rounded-2xl border border-red-200 text-center"><h3 class="font-bold text-red-700">Unable to load orders</h3><p class="text-sm text-slate-500 mt-2">Firestore query/index বা permission সমস্যা হতে পারে। Firebase Console-এর error log দেখুন।</p><button onclick="fetchOrdersData()" class="mt-4 px-4 py-2 bg-slate-900 text-white rounded-lg">Try Again</button></div>`;}};
+window.setFilter=key=>{currentFilter=key;document.querySelectorAll('.filter-btn').forEach(b=>{b.className='filter-btn px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap '+(b.dataset.filter===key?'bg-slate-900 text-white':'bg-slate-100 text-slate-700');});renderOrders();};
+
+// ===== FIXED: Price Logic =====
+function priceParts(o){
+  const qty=Math.max(1,Math.floor(number(o.quantity)||1));
+  const unit=number(o.unitPrice);
+  const base=Number.isFinite(unit)&&unit>0?unit:((number(o.price)>0?number(o.price):0)/qty);
+  const baseTotal=number(o.price)>0?number(o.price):base*qty;
+  const variantTotal=Number.isFinite(number(o.variantExtraPrice))&&number(o.variantExtraPrice)>0?number(o.variantExtraPrice):number(o.variantExtraPricePerUnit)*qty;
+  const subtotal=Number.isFinite(number(o.subtotal))&&number(o.subtotal)>0?number(o.subtotal):baseTotal+variantTotal;
+  
+  // FIXED LOGIC: Only freeDelivery === true is considered FREE
+  // deliveryCharge 0 alone is NOT free, because old orders have 0 but total includes charge
+  const isFreeDelivery = o.freeDelivery === true;
+  const rawShipping = number(o.deliveryCharge);
+  const shipping = isFreeDelivery ? 0 : rawShipping;
+  
+  // Total calculation - respect database totalPrice, but if free delivery, don't add shipping
+  let total;
+  if(Number.isFinite(number(o.totalPrice)) && number(o.totalPrice) > 0){
+    total = number(o.totalPrice);
+    // Safety: if marked free but totalPrice still has shipping (like screenshot 1100+120=1220 but showing free), keep DB total? 
+    // No, if it's marked free we must show subtotal only for consistency. If NOT marked free, show DB total.
+    if(isFreeDelivery){
+      // If free delivery order was saved with shipping before, we correct it to subtotal
+      // Change this to `total = number(o.totalPrice)` if you want to keep whatever DB says even for free orders
+      total = subtotal; 
+    }
+  } else {
+    total = subtotal + shipping;
+  }
+  return {qty,unit:base,baseTotal,variantTotal,subtotal,shipping,total,isFreeDelivery,rawShipping};
+}
+
+function priceBreakdown(o){
+  const p=priceParts(o);
+  
+  const freeDeliveryBanner = p.isFreeDelivery ? `
+    <div style="background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);border:1.5px solid #16a34a;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:18px">🚚</span>
+      <span style="color:#15803d;font-weight:800;font-size:13px">ফ্রি ডেলিভারি - এই অর্ডারে ডেলিভারি চার্জ ফ্রি!</span>
+      <span style="margin-left:auto;background:#16a34a;color:white;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800">FREE</span>
+    </div>
+  ` : '';
+
+  const shippingLine = p.isFreeDelivery ? 
+    `<div class="price-row"><span>ডেলিভারি চার্জ</span><strong style="color:#16a34a">৳0 <span style="background:#dcfce7;color:#15803d;padding:2px 6px;border-radius:10px;font-size:11px;margin-left:4px">FREE DELIVERY</span></strong></div>` :
+    `<div class="price-row"><span>ডেলিভারি চার্জ</span><strong>${money(p.shipping)}</strong></div>`;
+
+  return `<div class="price-box space-y-3">
+    ${freeDeliveryBanner}
+    <div class="flex items-center justify-between gap-3"><span class="text-sm font-semibold text-slate-700">পরিমাণ</span><span class="px-3 py-1 rounded-lg bg-orange-50 text-orange-700 font-bold text-sm">${p.qty} টি</span></div>
+    <div class="price-row"><span>পণ্যের দাম (${money(p.unit)} × ${p.qty})</span><strong>${money(p.baseTotal)}</strong></div>
+    <div class="price-row"><span>Variants-এর অতিরিক্ত মূল্য</span><strong>${money(p.variantTotal)}</strong></div>
+    <div class="price-row border-t border-dashed border-slate-300 pt-3"><span>ডেলিভারি চার্জ ছাড়া মোট</span><strong>${money(p.subtotal)}</strong></div>
+    ${shippingLine}
+    <div class="price-row price-total"><span>কাস্টমারের কাছ থেকে নিবেন</span><strong>${money(p.total)}</strong></div>
+  </div>`;
+}
+function productImage(o){if(Array.isArray(o.productImage)&&o.productImage[0])return o.productImage[0];if(typeof o.productImage==='string'&&o.productImage.trim())return o.productImage;return 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=150&auto=format&fit=crop&q=80';}
+window.renderOrders=()=>{const container=$('ordersContainer');const filtered=allUserOrders.filter(o=>{const s=(o.status||'').toLowerCase().trim();if(currentFilter==='not_set'){if(s)return false;}else if(currentFilter!=='all'&&s!==currentFilter)return false;if(searchQuery){const hay=[o.name,o.phone,o.productName,o.productSlug,o.jela,o.thanaUpajela,o.vibag,o.fullAddress,o.id].join(' ').toLowerCase();if(!hay.includes(searchQuery))return false;}return true;});if(!filtered.length){container.innerHTML='<div class="bg-white p-12 rounded-2xl border text-center"><div class="text-4xl mb-3">📦</div><h3 class="font-bold text-slate-900">No orders found</h3><p class="text-sm text-slate-500 mt-2">Search বা filter পরিবর্তন করে দেখুন।</p><button onclick="fetchOrdersData()" class="mt-4 px-4 py-2 bg-slate-900 text-white rounded-xl text-sm">Refresh Orders</button></div>';return;}
+container.innerHTML=filtered.map(o=>{const [label,classes]=statusInfo(o.status);const p=priceParts(o);const variants=Array.isArray(o.selectedVariants)?o.selectedVariants:[];const note=o.orderNote?`<div class="mt-3 rounded-xl bg-amber-50 border border-amber-100 p-3 text-sm"><b class="text-amber-900">Customer note:</b> ${esc(o.orderNote)}</div>`:'';return `<article class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"><div class="px-4 sm:px-5 py-4 bg-slate-50 border-b flex flex-wrap items-center justify-between gap-3"><div><p class="font-mono text-xs font-bold text-slate-700">Order #${esc(o.id.slice(0,8))}… <button class="text-brand-600 ml-1" onclick="copyOrderId('${esc(o.id)}')">Copy ID</button></p><p class="text-xs text-slate-400 mt-1">${esc(dateText(o.createdAt))}</p></div><select aria-label="Order status" onchange="updateOrderStatus('${esc(o.id)}',this.value,this)" class="border rounded-xl px-3 py-2 text-xs font-bold ${classes}">${[['pending','Pending'],['confirm','Confirm'],['packeging','Packaging'],['processing','Processing'],['return','Return'],['delivery','Delivery']].map(([v,t])=>`<option value="${v}" ${o.status===v?'selected':''}>${t}</option>`).join('')}${!o.status?'<option selected disabled>Status not set</option>':''}</select></div>
+<div class="p-4 sm:p-5 grid lg:grid-cols-2 gap-5"><div class="min-w-0"><div class="flex gap-4"><img src="${esc(productImage(o))}" alt="Product" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=150'" class="w-20 h-20 rounded-xl object-cover border bg-slate-100"><div class="min-w-0 flex-1"><h3 class="font-bold text-slate-900">${esc(o.productName||'Product')}</h3><p class="text-xs text-slate-400 mt-1 break-all">Slug: ${esc(o.productSlug||'N/A')}</p><p class="text-sm text-slate-600 mt-2">পরিমাণ: <b class="text-slate-900">${p.qty} টি</b></p>${variants.map(v=>`<span class="inline-block mt-2 mr-1 px-2 py-1 rounded-lg bg-slate-100 text-xs">${esc(v.name)}: <b>${esc(v.value)}</b>${number(v.extraPrice)>0?` (+${money(v.extraPrice)})`:''}</span>`).join('')}</div></div>${note}</div>
+<div class="rounded-xl bg-slate-50 border border-slate-100 p-4"><h4 class="text-xs uppercase tracking-wider font-extrabold mb-3">Customer Details</h4><p class="font-bold">${esc(o.name||'Unnamed')}</p>${o.phone?`<a class="text-sm text-brand-600 font-semibold inline-block mt-1" href="tel:${esc(o.phone)}">☎ ${esc(o.phone)}</a>`:'<p class="text-xs text-slate-400">Phone not provided</p>'}<p class="text-sm text-slate-600 mt-2 leading-relaxed">${esc(o.fullAddress||'')}${o.thanaUpajela?', '+esc(o.thanaUpajela):''}${o.jela?', '+esc(o.jela):''}${o.vibag?', '+esc(o.vibag):''}</p><div class="flex flex-wrap justify-between gap-2 border-t mt-3 pt-3 text-xs text-slate-500"><span>Delivery: <b>${esc(o.deliveryLocation||'N/A')}</b></span><span>Charge: <b style="${p.isFreeDelivery ? 'color:#16a34a' : ''}">${p.isFreeDelivery ? '৳0 <span style="background:#dcfce7;color:#15803d;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:800;margin-left:4px">FREE</span>' : money(p.shipping)}</b></span></div></div>
+<div class="lg:col-span-2">${priceBreakdown(o)}</div></div><div class="px-4 sm:px-5 py-3 border-t bg-white flex justify-end"><button onclick="openOrderModal('${esc(o.id)}')" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700">View Full Order</button></div></article>`;}).join('');};
+window.copyOrderId=async id=>{try{await navigator.clipboard.writeText(id);toast('Order ID copied');}catch{toast('Could not copy order ID',true);}};
+window.updateOrderStatus=async(id,status,el)=>{if(!currentUser)return;el.disabled=true;try{const order=allUserOrders.find(o=>o.id===id);if(!order||order.landingUserId!==currentUser.uid||order.landingUserEmail!==currentUser.email)throw new Error('Order ownership check failed');await updateDoc(doc(db,'landing_order',id),{status});order.status=status;toast('Order status updated');renderOrders();await loadStatistics();}catch(e){console.error(e);toast('Failed to update status. Check Firestore rules.',true);await fetchOrdersData();}finally{el.disabled=false;}};
+window.openOrderModal=id=>{const o=allUserOrders.find(x=>x.id===id);if(!o)return;const [label,classes]=statusInfo(o.status);const variants=Array.isArray(o.selectedVariants)?o.selectedVariants:[];$('modalOrderIdTitle').textContent='Order #'+o.id;$('modalOrderDateSub').textContent='Created on '+dateText(o.createdAt);$('modalBodyContent').innerHTML=`<div class="flex flex-wrap justify-between gap-3 p-4 rounded-xl bg-slate-50 border"><div><p class="text-xs text-slate-400">Firebase Document ID</p><p class="font-mono text-xs font-bold mt-1 break-all">${esc(o.id)}</p></div><span class="self-start px-3 py-1 rounded-lg border text-xs font-bold ${classes}">${esc(label)}</span></div>
+<section><h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Product Information</h4><div class="flex gap-4 border rounded-xl p-4"><img src="${esc(productImage(o))}" alt="Product" class="w-20 h-20 object-cover rounded-xl border"><div class="min-w-0"><h3 class="font-bold">${esc(o.productName||'Product')}</h3><p class="text-xs text-slate-400 mt-1 break-all">Slug: ${esc(o.productSlug||'N/A')}</p><p class="text-sm mt-2">পরিমাণ: <b>${Math.max(1,Math.floor(number(o.quantity)||1))} টি</b></p></div></div>${variants.length?`<div class="mt-3 grid sm:grid-cols-2 gap-2">${variants.map(v=>`<div class="p-3 rounded-xl bg-slate-50 border text-sm"><span class="text-slate-500">${esc(v.name)}:</span> <b>${esc(v.value)}</b>${number(v.extraPrice)>0?` <span class="text-brand-600">(+${money(v.extraPrice)})</span>`:''}</div>`).join('')}</div>`:''}</section>
+<section><h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Customer & Delivery</h4><div class="grid sm:grid-cols-2 gap-3"><div class="p-4 rounded-xl border space-y-2"><p class="text-xs text-slate-400">Customer Name</p><p class="font-semibold">${esc(o.name||'N/A')}</p><p class="text-xs text-slate-400">Phone Number</p><p>${o.phone?`<a class="font-semibold text-brand-600" href="tel:${esc(o.phone)}">${esc(o.phone)}</a>`:'N/A'}</p><p class="text-xs text-slate-400">Delivery type</p><p>${esc(o.deliveryLocation||'N/A')}</p></div><div class="p-4 rounded-xl border space-y-2"><p class="text-xs text-slate-400">Division</p><p>${esc(o.vibag||'N/A')}</p><p class="text-xs text-slate-400">District</p><p>${esc(o.jela||'N/A')}</p><p class="text-xs text-slate-400">Thana / Upazila</p><p>${esc(o.thanaUpajela||'N/A')}</p></div></div><div class="mt-3 p-4 border rounded-xl"><p class="text-xs text-slate-400 mb-1">Full Address</p><p class="text-sm font-medium">${esc(o.fullAddress||'N/A')}</p></div>${o.orderNote?`<div class="mt-3 p-4 bg-amber-50 border border-amber-100 rounded-xl"><p class="text-xs font-bold text-amber-900 mb-1">Customer Order Note</p><p class="text-sm">${esc(o.orderNote)}</p></div>`:''}</section>
+<section><h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Price Summary</h4>${priceBreakdown(o)}</section>`;
+$('orderModal').classList.remove('hidden');$('orderModal').classList.add('flex');document.body.style.overflow='hidden';};
+window.closeOrderModal=()=>{$('orderModal').classList.add('hidden');$('orderModal').classList.remove('flex');document.body.style.overflow='';};
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeOrderModal();});
+</script>
+</body>
+</html>
