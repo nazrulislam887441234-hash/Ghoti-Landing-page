@@ -1144,7 +1144,7 @@
                         </div>
                     </div>
                     <div class="product-actions">
-                        <a href="https://www.ghotimarket.com/landing/product?${p.productSlug || ''}" target="_blank" class="btn btn-outline" title="View Landing Page"><i class="fa-solid fa-eye"></i> View</a>
+                        <a href="https://landing.ghotimarket.com/product?${p.productSlug || ''}" target="_blank" class="btn btn-outline" title="View Landing Page"><i class="fa-solid fa-eye"></i> View</a>
                         <button class="btn btn-outline share-btn" data-slug="${escapeHtml(p.productSlug || '')}" title="Share Landing Page"><i class="fa-solid fa-share-nodes"></i> Share</button>
                         <button class="btn btn-primary edit-btn" data-id="${p.id}" title="Edit Landing Page"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
                         <button class="btn btn-danger delete-btn" data-id="${p.id}" data-name="${escapeHtml(p.productName || 'Landing Page')}" title="Delete Landing Page"><i class="fa-solid fa-trash"></i></button>
@@ -1178,23 +1178,26 @@
             });
         }
 
-        // Share Functionality with exact format ?slug
-        async function shareProduct(slug) {
-            const shareUrl = `https://ghotimarket.com/landing/product?${slug}`;
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'GHOTI Landing Page',
-                        url: shareUrl
-                    });
-                } catch (err) {
-                    console.log('Share canceled or failed');
-                }
-            } else {
-                navigator.clipboard.writeText(shareUrl);
-                showToast("Landing Page link copied successfully", "success");
-            }
+async function shareProduct(slug) {
+    // decodeURI ব্যবহার করে নিশ্চিত করুন যে এটি এনকোডেড না হয়ে বাংলায় দেখায়
+    const cleanSlug = decodeURIComponent(slug);
+    const shareUrl = `https://landing.ghotimarket.com/product?${cleanSlug}`;
+
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: 'GHOTI Landing Page',
+                url: shareUrl
+            });
+        } catch (err) {
+            console.log('Share canceled or failed');
         }
+    } else {
+        navigator.clipboard.writeText(shareUrl);
+        showToast("Landing Page link copied successfully", "success");
+    }
+}
+
 
         // Search & Filters Event Listeners
         searchInput.addEventListener('input', (e) => {
