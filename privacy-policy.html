@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Meta Tags -->
+  <title>Privacy Policy — গোপনীয়তা নীতিমালা | Ghoti Landing</title>
+  <meta name="description" content="Ghoti Landing (Powered by Ghoti Market)-এর অফিসিয়াল Privacy Policy। আমাদের ফ্রি ল্যান্ডিং পেজ বিল্ডার প্ল্যাটফর্ম ব্যবহারের ক্ষেত্রে তথ্য সংগ্রহ, ব্যবহার, নিরাপত্তা ও ব্যবহারকারীর অধিকার সম্পর্কে জানুন।" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://landing.ghotimarket.com/privacy-policy" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ghoti Landing" />
+  <meta property="og:title" content="Privacy Policy — গোপনীয়তা নীতিমালা | Ghoti Landing" />
+  <meta property="og:description" content="Ghoti Landing প্ল্যাটফর্মে ব্যবহারকারীর তথ্যের গোপনীয়তা, নিরাপত্তা, তথ্য সংরক্ষণ এবং নীতিমালা সংক্রান্ত বিস্তারিত বিবরণ।" />
+  <meta property="og:url" content="https://landing.ghotimarket.com/privacy-policy" />
+  <meta property="og:image" content="https://ghotimarket.com/logo/landing.png" />
+
+  <!-- Google Font: Hind Siliguri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Hind Siliguri"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              primary: '#FF6B35',
+              secondary: '#FF6A00',
+              accent: '#FFA500',
+              text: '#171717',
+              bg: '#FFF9F5',
+              card: '#FFFFFF',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Base Typography & Scroll Offset for Sticky Header */
+    html {
+      font-family: 'Hind Siliguri', sans-serif;
+      color: #171717;
+      background-color: #FFF9F5;
+    }
+
+    section[id] {
+      scroll-margin-top: 6rem;
+    }
+
+    /* Subtle Custom Scrollbar for Table of Contents */
+    .toc-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .toc-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .toc-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 107, 53, 0.25);
+      border-radius: 9999px;
+    }
+
+    /* Active TOC Link State */
+    .toc-link.active {
+      background-color: #FFF1E8;
+      color: #FF6A00;
+      font-weight: 600;
+      border-left-color: #FF6B35;
+    }
+
+    /* Print Cleanliness */
+    @media print {
+      header, aside, #mobile-toc-wrapper, #back-to-top, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #FFFFFF !important;
+      }
+      article {
+        box-shadow: none !important;
+        border: 1px solid #E5E7EB !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#FFF9F5] text-[#171717] antialiased selection:bg-[#FF6B35]/20 selection:text-[#FF6A00]">
+
+  <!-- Skip to Main Content Link for Accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-[#FF6B35] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold">
+    মূল নীতিমালায় যান
+  </a>
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-orange-100 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo & Parent Attribution -->
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="https://landing.ghotimarket.com" class="flex items-center gap-2.5 focus:outline-none focus:ring-2 focus:ring-[#FF6B35] rounded-lg" aria-label="Ghoti Landing Home">
+          <img 
+            src="https://ghotimarket.com/logo/landing.png" 
+            alt="Ghoti Landing Logo" 
+            class="h-9 sm:h-10 w-auto object-contain"
+            onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden');"
+          />
+          <!-- Fallback Logo Badge if external image fails -->
+          <div id="logo-fallback" class="hidden flex items-center gap-2">
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FF6B35] to-[#FF6A00] text-white font-bold text-lg flex items-center justify-center shadow-xs">
+              G
+            </span>
+            <span class="font-bold text-xl tracking-tight text-[#171717]">
+              GHOTI <span class="text-[#FF6B35]">LANDING</span>
+            </span>
+          </div>
+        </a>
+
+        <span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-50 text-[#FF6A00] border border-orange-200/80 whitespace-nowrap">
+          Powered by GHOTI MARKET
+        </span>
+      </div>
+
+      <!-- Navigation Actions -->
+      <nav aria-label="Primary Navigation" class="flex items-center gap-2 sm:gap-3">
+        <a 
+          href="https://landing.ghotimarket.com" 
+          class="inline-flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-[#FF6B35] hover:bg-[#FF6A00] text-white font-semibold text-sm sm:text-base transition-colors duration-150 shadow-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF6B35]"
+        >
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          <span>Home</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-orange-100/70 via-[#FFF9F5] to-[#FFF9F5] border-b border-orange-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
+      <div class="max-w-3xl">
+        <!-- Platform Context Pill -->
+        <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-white border border-orange-200 text-xs sm:text-sm font-medium text-[#FF6A00] mb-4 shadow-2xs">
+          <span class="w-2 h-2 rounded-full bg-[#FF6B35]"></span>
+          <span>GHOTI LANDING — Free Landing Page Builder</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#171717] tracking-tight leading-tight">
+          Privacy Policy <span class="text-[#FF6B35] block sm:inline">— গোপনীয়তা নীতিমালা</span>
+        </h1>
+
+        <p class="mt-4 text-base sm:text-lg text-neutral-700 leading-relaxed">
+          <strong class="font-semibold text-[#171717]">Ghoti Landing</strong> (Powered by <strong class="font-semibold text-[#171717]">Ghoti Market</strong>) ব্যবহারকারীদের ব্যক্তিগত তথ্যের গোপনীয়তা, স্বচ্ছতা এবং নিরাপত্তাকে সর্বোচ্চ গুরুত্ব দেয়। আমাদের প্ল্যাটফর্ম ব্যবহারের ক্ষেত্রে কোন তথ্য সংগ্রহ করা হয়, কেন ব্যবহার করা হয় এবং কীভাবে সুরক্ষিত রাখার চেষ্টা করা হয়—তা এই নীতিমালায় স্পষ্টভাবে তুলে ধরা হয়েছে।
+        </p>
+
+        <!-- Document Metadata Pills -->
+        <div class="mt-6 flex flex-wrap items-center gap-3 text-xs sm:text-sm text-neutral-600">
+          <div class="inline-flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-orange-100">
+            <svg class="w-4 h-4 text-[#FF6B35]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+            </svg>
+            <span>প্ল্যাটফর্ম: <strong class="text-[#171717]">landing.ghotimarket.com</strong></span>
+          </div>
+
+          <div class="inline-flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-orange-100">
+            <svg class="w-4 h-4 text-[#FF6B35]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span>মোট ধারা: <strong class="text-[#171717]">১৫টি বিভাগ</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Mobile Quick Jump Navigation (Collapsible via native <details> so it works even without JS) -->
+    <div id="mobile-toc-wrapper" class="lg:hidden mb-6">
+      <details class="bg-white rounded-2xl border border-orange-200/80 shadow-xs overflow-hidden group">
+        <summary class="list-none cursor-pointer px-4 py-3.5 flex items-center justify-between font-semibold text-[#171717] select-none">
+          <span class="flex items-center gap-2 text-sm sm:text-base">
+            <svg class="w-5 h-5 text-[#FF6B35]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />
+            </svg>
+            <span>নীতিমালার সূচিপত্র (দ্রুত নেভিগেশন)</span>
+          </span>
+          <svg class="w-5 h-5 text-neutral-500 transition-transform duration-150 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <nav aria-label="Mobile Table of Contents" class="px-4 pb-4 pt-1 border-t border-orange-100">
+          <ol class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-sm">
+            <li><a href="#section-01" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০১. পরিচিতি (Introduction)</a></li>
+            <li><a href="#section-02" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০২. আমরা যেসব তথ্য সংগ্রহ করতে পারি</a></li>
+            <li><a href="#section-03" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০৩. তথ্য ব্যবহারের উদ্দেশ্য</a></li>
+            <li><a href="#section-04" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০৪. অ্যাকাউন্টের নিরাপত্তা</a></li>
+            <li><a href="#section-05" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০৫. Face ও Identity Verification</a></li>
+            <li><a href="#section-06" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০৬. Cookies ও প্রযুক্তিগত তথ্য</a></li>
+            <li><a href="#section-07" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০৭. Landing Page ও ক্রেতার তথ্য</a></li>
+            <li><a href="#section-08" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০৮. তথ্য শেয়ার (Information Sharing)</a></li>
+            <li><a href="#section-09" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">০৯. Third-Party Services</a></li>
+            <li><a href="#section-10" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">১০. তথ্য সংরক্ষণ (Data Retention)</a></li>
+            <li><a href="#section-11" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">১১. ব্যবহারকারীর অধিকার</a></li>
+            <li><a href="#section-12" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">১২. অপ্রাপ্তবয়স্কদের গোপনীয়তা</a></li>
+            <li><a href="#section-13" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">১৩. তথ্যের নিরাপত্তা (Data Security)</a></li>
+            <li><a href="#section-14" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">১৪. নীতিমালা পরিবর্তন ও আপডেট</a></li>
+            <li><a href="#section-15" class="mobile-toc-link block px-2.5 py-1.5 rounded-lg text-neutral-700 hover:bg-orange-50 hover:text-[#FF6A00]">১৫. যোগাযোগ ও সহায়তা</a></li>
+          </ol>
+        </nav>
+      </details>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Desktop Sticky Sidebar Table of Contents -->
+      <aside class="hidden lg:block lg:col-span-4 xl:col-span-3 sticky top-24">
+        <div class="bg-white rounded-2xl border border-orange-100 shadow-xs p-5">
+          <div class="flex items-center gap-2 pb-3 mb-3 border-b border-orange-100">
+            <span class="w-2 h-5 rounded-full bg-[#FF6B35]"></span>
+            <h2 class="font-bold text-base text-[#171717]">নীতিমালার সূচিপত্র</h2>
+          </div>
+          <nav aria-label="Desktop Table of Contents" class="max-h-[calc(100vh-13rem)] overflow-y-auto toc-scroll pr-1">
+            <ul class="space-y-1 text-sm">
+              <li><a href="#important-notice" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-[#FF6A00] font-medium hover:bg-orange-50 transition-colors">গুরুত্বপূর্ণ গোপনীয়তা বিজ্ঞপ্তি</a></li>
+              <li><a href="#section-01" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০১. পরিচিতি (Introduction)</a></li>
+              <li><a href="#section-02" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০২. আমরা যেসব তথ্য সংগ্রহ করতে পারি</a></li>
+              <li><a href="#section-03" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০৩. তথ্য ব্যবহারের উদ্দেশ্য</a></li>
+              <li><a href="#section-04" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০৪. অ্যাকাউন্টের নিরাপত্তা</a></li>
+              <li><a href="#section-05" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০৫. Face ও Identity Verification</a></li>
+              <li><a href="#section-06" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০৬. Cookies ও প্রযুক্তিগত তথ্য</a></li>
+              <li><a href="#section-07" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০৭. Landing Page ও ক্রেতার তথ্য</a></li>
+              <li><a href="#section-08" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০৮. তথ্য শেয়ার</a></li>
+              <li><a href="#section-09" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">০৯. Third-Party Services</a></li>
+              <li><a href="#section-10" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">১০. তথ্য সংরক্ষণ</a></li>
+              <li><a href="#section-11" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">১১. ব্যবহারকারীর অধিকার</a></li>
+              <li><a href="#section-12" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">১২. অপ্রাপ্তবয়স্কদের গোপনীয়তা</a></li>
+              <li><a href="#section-13" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">১৩. তথ্যের নিরাপত্তা</a></li>
+              <li><a href="#section-14" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">১৪. নীতিমালা পরিবর্তন ও আপডেট</a></li>
+              <li><a href="#section-15" class="toc-link block pl-3 pr-2 py-1.5 rounded-r-lg border-l-2 border-transparent text-neutral-600 hover:text-[#171717] hover:bg-orange-50/70 transition-colors">১৫. যোগাযোগ ও সহায়তা</a></li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Policy Content Column -->
+      <div class="lg:col-span-8 xl:col-span-9 space-y-6">
+
+        <!-- Additional Important Notice Box -->
+        <section id="important-notice" aria-labelledby="notice-heading" class="bg-gradient-to-br from-orange-50 to-amber-50/70 rounded-2xl border-2 border-[#FF6B35]/35 p-5 sm:p-7 shadow-xs">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-[#FF6B35] text-white flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider text-[#FF6A00] mb-1">Important Privacy Notice</span>
+              <h2 id="notice-heading" class="text-xl sm:text-2xl font-bold text-[#171717]">
+                ব্যবহারকারীদের জন্য গুরুত্বপূর্ণ গোপনীয়তা নির্দেশনা
+              </h2>
+              <p class="mt-1.5 text-sm sm:text-base text-neutral-700">
+                Ghoti Landing প্ল্যাটফর্ম নিরাপদ ও দায়িত্বশীলভাবে ব্যবহারের জন্য নিচের বিষয়গুলো অবশ্যই অনুসরণ করুন:
+              </p>
+
+              <ul class="mt-4 space-y-2.5 text-sm sm:text-base text-[#171717]">
+                <li class="flex items-start gap-2.5 bg-white/85 px-3.5 py-2.5 rounded-xl border border-orange-200/70">
+                  <span class="w-5 h-5 rounded-full bg-[#FF6B35]/15 text-[#FF6A00] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">১</span>
+                  <span>ব্যবহারকারীরা অ্যাকাউন্ট তৈরি ও পরিচালনার সময় নিজেদের তথ্য সঠিকভাবে প্রদান করবেন।</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-white/85 px-3.5 py-2.5 rounded-xl border border-orange-200/70">
+                  <span class="w-5 h-5 rounded-full bg-[#FF6B35]/15 text-[#FF6A00] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">২</span>
+                  <span>অন্য কারও ব্যক্তিগত তথ্য, মোবাইল নম্বর বা পরিচয় অনুমতি ছাড়া ব্যবহার করা যাবে না।</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-white/85 px-3.5 py-2.5 rounded-xl border border-orange-200/70">
+                  <span class="w-5 h-5 rounded-full bg-[#FF6B35]/15 text-[#FF6A00] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">৩</span>
+                  <span>নিজের তৈরি Landing Page-এর মাধ্যমে সংগৃহীত ক্রেতাদের তথ্য নিরাপদ ও গোপন রাখা সংশ্লিষ্ট বিক্রেতার দায়িত্ব।</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-white/85 px-3.5 py-2.5 rounded-xl border border-orange-200/70">
+                  <span class="w-5 h-5 rounded-full bg-[#FF6B35]/15 text-[#FF6A00] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">৪</span>
+                  <span>অ্যাকাউন্টের নিরাপত্তা নিশ্চিত করতে ও প্রতারণা প্রতিরোধে প্রয়োজন অনুযায়ী অতিরিক্ত পরিচয় যাচাই করা হতে পারে।</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-white/85 px-3.5 py-2.5 rounded-xl border border-orange-200/70">
+                  <span class="w-5 h-5 rounded-full bg-[#FF6B35]/15 text-[#FF6A00] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">৫</span>
+                  <span>প্ল্যাটফর্মে ব্যবহৃত Third-Party Services (যেমন: Firebase বা Google Services)-এর ক্ষেত্রে সংশ্লিষ্ট সেবা প্রদানকারীর নিজস্ব Privacy Policy প্রযোজ্য হতে পারে।</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 01: Introduction -->
+        <section id="section-01" aria-labelledby="heading-01">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">01</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Introduction</span>
+                <h2 id="heading-01" class="text-xl sm:text-2xl font-bold text-[#171717]">পরিচিতি</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                <strong class="text-[#171717] font-semibold">Ghoti Landing</strong> (যা <strong class="text-[#171717] font-semibold">Ghoti Market</strong>-এর একটি ফ্রি ল্যান্ডিং পেজ বিল্ডার প্ল্যাটফর্ম) ব্যবহারকারীদের ব্যক্তিগত তথ্যের গোপনীয়তা এবং নিরাপত্তাকে অত্যন্ত গুরুত্ব দেয়। এই Privacy Policy-তে ব্যাখ্যা করা হয়েছে যে, আমাদের ওয়েবসাইট (<span class="text-[#FF6A00] font-medium">https://landing.ghotimarket.com</span>) এবং সংশ্লিষ্ট সেবা ব্যবহার করার সময় কী ধরনের তথ্য সংগ্রহ করা হতে পারে, কেন তা সংগ্রহ করা হয় এবং কীভাবে সেগুলো ব্যবহার ও সংরক্ষণ করা হতে পারে।
+              </p>
+              <p>
+                আমাদের ওয়েবসাইট ভিজিট করা, অ্যাকাউন্ট তৈরি করা অথবা প্ল্যাটফর্মের যেকোনো ফিচার ব্যবহার করার মাধ্যমে ব্যবহারকারীরা এই Privacy Policy-এর শর্তাবলি সম্পর্কে অবগত হচ্ছেন বলে বিবেচিত হবেন।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 02: Information We Collect -->
+        <section id="section-02" aria-labelledby="heading-02">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">02</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Information We Collect</span>
+                <h2 id="heading-02" class="text-xl sm:text-2xl font-bold text-[#171717]">আমরা যেসব তথ্য সংগ্রহ করতে পারি</h2>
+              </div>
+            </div>
+            <div class="space-y-4 text-neutral-700 text-base leading-relaxed">
+              <p>
+                অ্যাকাউন্ট তৈরি এবং Ghoti Landing প্ল্যাটফর্ম সঠিকভাবে পরিচালনার জন্য প্রয়োজন অনুযায়ী নিচের তথ্যগুলো সংগ্রহ করা হতে পারে:
+              </p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>ব্যবহারকারীর নাম</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>মোবাইল নম্বর</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>WhatsApp নম্বর</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>ইমেইল ঠিকানা (যদি প্রদান করা হয়)</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>অ্যাকাউন্ট সংক্রান্ত মৌলিক তথ্য</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>তৈরি করা Landing Page-এর তথ্য</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>আপলোড করা পণ্য ও ছবি</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>Landing Page-এর URL এবং অন্যান্য সেটিংস</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>Support-এ যোগাযোগের সময় প্রদান করা তথ্য</span>
+                </li>
+                <li class="flex items-center gap-2.5 bg-[#FFF9F5] px-3.5 py-2.5 rounded-xl border border-orange-100">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span>অ্যাকাউন্টের নিরাপত্তা ও কার্যক্রম সম্পর্কিত প্রযুক্তিগত তথ্য</span>
+                </li>
+              </ul>
+              <div class="p-3.5 rounded-xl bg-orange-50/80 border border-orange-200/70 text-sm text-neutral-800">
+                <strong class="text-[#FF6A00]">তথ্য সীমিতকরণ নীতি:</strong> আমরা কেবল প্ল্যাটফর্মের সেবা প্রদান, নিরাপত্তা রক্ষা এবং আইনি প্রয়োজনের জন্য যতটুকু তথ্য অপরিহার্য, শুধুমাত্র ততটুকুই সংগ্রহ করার নীতি অনুসরণ করি।
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 03: How We Use Information -->
+        <section id="section-03" aria-labelledby="heading-03">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">03</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">How We Use Information</span>
+                <h2 id="heading-03" class="text-xl sm:text-2xl font-bold text-[#171717]">তথ্য ব্যবহারের উদ্দেশ্য</h2>
+              </div>
+            </div>
+            <div class="space-y-4 text-neutral-700 text-base leading-relaxed">
+              <p>
+                সংগ্রহ করা তথ্য নিচের বৈধ ও কার্যকরী উদ্দেশ্যে ব্যবহার করা হতে পারে:
+              </p>
+              <ul class="space-y-2.5">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>ব্যবহারকারীর অ্যাকাউন্ট তৈরি, লগইন ও সার্বিক পরিচালনা করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>ব্যবহারকারীদের জন্য Landing Page তৈরি, হোস্ট এবং পরিচালনার সুবিধা প্রদান করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>অ্যাকাউন্টের নিরাপত্তা নিশ্চিত করা এবং অননুমোদিত প্রবেশ প্রতিরোধ করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>একই মোবাইল নম্বর ব্যবহার করে একাধিক বা ডুপ্লিকেট অ্যাকাউন্ট খোলার প্রবণতা শনাক্ত করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>প্রতারণা, স্প্যাম এবং প্ল্যাটফর্মের যেকোনো অপব্যবহার প্রতিরোধ করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>ব্যবহারকারীদের প্রয়োজনীয় কারিগরি ও সাধারণ Support প্রদান করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>প্ল্যাটফর্মের নীতিমালা লঙ্ঘন বা সন্দেহজনক কার্যক্রম শনাক্ত করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>নিরাপত্তার প্রয়োজনে ব্যবহারকারীর পরিচয় যাচাই করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-[#FF6B35] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>ব্যবহারকারীর অভিজ্ঞতা ও প্ল্যাটফর্মের সামগ্রিক কার্যকারিতা উন্নত করা।</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 04: User Account Security -->
+        <section id="section-04" aria-labelledby="heading-04">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">04</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">User Account Security</span>
+                <h2 id="heading-04" class="text-xl sm:text-2xl font-bold text-[#171717]">অ্যাকাউন্টের নিরাপত্তা</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                ব্যবহারকারীদের অ্যাকাউন্টের নিরাপত্তা নিশ্চিত করতে আমরা প্রয়োজনীয় প্রযুক্তিগত ও প্রশাসনিক ব্যবস্থা গ্রহণ করতে পারি। এর মধ্যে অথেনটিকেশন যাচাই, লগইন পর্যবেক্ষণ এবং অস্বাভাবিক কার্যক্রম শনাক্তকরণের মতো প্রক্রিয়া অন্তর্ভুক্ত থাকতে পারে।
+              </p>
+              <p>
+                তবে অ্যাকাউন্টের সুরক্ষা বজায় রাখতে ব্যবহারকারীদেরও সচেতন ভূমিকা পালন করতে হবে। ব্যবহারকারীদের নিজের পাসওয়ার্ড, ওটিপি (OTP) এবং লগইন তথ্য সম্পূর্ণ গোপন রাখা এবং অন্য কারও সঙ্গে অ্যাকাউন্টের প্রবেশাধিকার শেয়ার না করার অনুরোধ করা হচ্ছে।
+              </p>
+              <p>
+                কোনো অ্যাকাউন্টে সন্দেহজনক কার্যক্রম, নীতিমালা লঙ্ঘন বা নিরাপত্তাজনিত ঝুঁকি শনাক্ত হলে প্ল্যাটফর্ম ও অন্যান্য ব্যবহারকারীর সুরক্ষার স্বার্থে সংশ্লিষ্ট অ্যাকাউন্টটি অতিরিক্ত যাচাইয়ের আওতায় আনা হতে পারে অথবা সাময়িকভাবে Suspend করা হতে পারে।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 05: Face Verification & Identity Verification -->
+        <section id="section-05" aria-labelledby="heading-05">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">05</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Face Verification & Identity Verification</span>
+                <h2 id="heading-05" class="text-xl sm:text-2xl font-bold text-[#171717]">পরিচয় ও ফেস ভেরিফিকেশন</h2>
+              </div>
+            </div>
+            <div class="space-y-4 text-neutral-700 text-base leading-relaxed">
+              <p>
+                প্ল্যাটফর্মের নিরাপত্তা নিশ্চিত করা, প্রতারণা প্রতিরোধ করা, ভুয়া অ্যাকাউন্ট নিয়ন্ত্রণ করা এবং সন্দেহজনক অ্যাকাউন্ট যাচাই করার প্রয়োজনে আমরা নির্দিষ্ট ক্ষেত্রে ব্যবহারকারীর কাছে অতিরিক্ত পরিচয় যাচাই চাইতে পারি। এক্ষেত্রে প্রয়োজন অনুযায়ী নিচের তথ্যগুলো চাওয়া হতে পারে:
+              </p>
+              <ul class="space-y-2 pl-1">
+                <li class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span><strong class="text-[#171717]">Face Verification:</strong> প্রকৃত ব্যবহারকারী নিশ্চিত করার জন্য তাৎক্ষণিক মুখমণ্ডল যাচাই।</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span><strong class="text-[#171717]">Selfie বা পরিচয় নিশ্চিত করার ছবি:</strong> অ্যাকাউন্টের মালিকানা ও সত্যতা যাচাইয়ের উদ্দেশ্যে।</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0"></span>
+                  <span><strong class="text-[#171717]">অ্যাকাউন্ট সম্পর্কিত অতিরিক্ত তথ্য:</strong> যাচাই প্রক্রিয়া সম্পন্ন করার জন্য প্রাসঙ্গিক তথ্য।</span>
+                </li>
+              </ul>
+              <div class="p-4 rounded-xl bg-[#FFF9F5] border border-orange-200/80 space-y-2 text-sm sm:text-base">
+                <p>
+                  <strong class="text-[#171717]">ব্যবহারের সীমাবদ্ধতা:</strong> যাচাইয়ের উদ্দেশ্যে সংগৃহীত ছবি বা তথ্য শুধুমাত্র সংশ্লিষ্ট অ্যাকাউন্ট যাচাই, নিরাপত্তা রক্ষা এবং প্রতারণা প্রতিরোধের উদ্দেশ্যেই ব্যবহার করা হয়; এটি কোনো বাণিজ্যিক বা বিজ্ঞাপনী কাজে ব্যবহার করা হয় না।
+                </p>
+                <p>
+                  <strong class="text-[#171717]">সংরক্ষণ সময়কাল:</strong> যাচাইয়ের তথ্য কেবল যাচাই প্রক্রিয়া সম্পন্ন করা, নিরাপত্তা অডিট এবং সম্ভাব্য বিরোধ বা অভিযোগ নিষ্পত্তির জন্য যতদিন বাস্তবসম্মতভাবে প্রয়োজন, ততদিন সংরক্ষিত থাকতে পারে। প্রয়োজন শেষ হলে সিস্টেমের স্বাভাবিক প্রক্রিয়া অনুযায়ী তা মুছে ফেলা বা সংরক্ষণ সীমিত করার পদক্ষেপ নেওয়া হয়।
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 06: Cookies & Technical Information -->
+        <section id="section-06" aria-labelledby="heading-06">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">06</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Cookies & Technical Information</span>
+                <h2 id="heading-06" class="text-xl sm:text-2xl font-bold text-[#171717]">কুকিজ ও প্রযুক্তিগত তথ্য</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                ওয়েবসাইটের স্বাভাবিক কার্যকারিতা বজায় রাখা, লগইন সেশন সচল রাখা, ব্যবহারকারীর অভিজ্ঞতা সহজ করা এবং নিরাপত্তা উন্নত করার জন্য প্রয়োজন অনুযায়ী <strong class="text-[#171717]">Cookies</strong>, <strong class="text-[#171717]">Browser Storage (Local/Session Storage)</strong> অথবা অনুরূপ প্রযুক্তি ব্যবহার করা হতে পারে।
+              </p>
+              <p>
+                এছাড়া প্ল্যাটফর্মের কারিগরি স্থিতিশীলতা ও নিরাপত্তা পর্যবেক্ষণের অংশ হিসেবে সিস্টেমের মাধ্যমে স্বয়ংক্রিয়ভাবে কিছু প্রযুক্তিগত তথ্য সংগ্রহ হতে পারে, যেমন:
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <span class="px-3 py-1.5 rounded-lg bg-[#FFF9F5] border border-orange-100 text-sm font-medium text-[#171717]">Browser Type ও Version</span>
+                <span class="px-3 py-1.5 rounded-lg bg-[#FFF9F5] border border-orange-100 text-sm font-medium text-[#171717]">Device Information ও OS</span>
+                <span class="px-3 py-1.5 rounded-lg bg-[#FFF9F5] border border-orange-100 text-sm font-medium text-[#171717]">IP Address</span>
+                <span class="px-3 py-1.5 rounded-lg bg-[#FFF9F5] border border-orange-100 text-sm font-medium text-[#171717]">Website Usage ও Error Logs</span>
+              </div>
+              <p class="text-sm text-neutral-600 pt-1">
+                ব্যবহারকারীরা চাইলে নিজেদের ব্রাউজারের সেটিংস থেকে Cookies নিয়ন্ত্রণ বা মুছে ফেলতে পারেন; তবে কিছু প্রয়োজনীয় কুকিজ বন্ধ রাখলে প্ল্যাটফর্মের নির্দিষ্ট ফিচার সঠিকভাবে কাজ নাও করতে পারে।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 07: Landing Page & Customer Information -->
+        <section id="section-07" aria-labelledby="heading-07">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">07</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Landing Page & Customer Information</span>
+                <h2 id="heading-07" class="text-xl sm:text-2xl font-bold text-[#171717]">ল্যান্ডিং পেজ ও ক্রেতাদের তথ্য</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                Ghoti Landing ব্যবহার করে বিক্রেতা বা উদ্যোক্তারা নিজেদের পণ্য ও ব্যবসার জন্য Landing Page তৈরি করতে পারেন। বিক্রেতারা তাদের Landing Page-এ যেসব তথ্য, ছবি বা যোগাযোগের বিবরণ প্রকাশ করেন এবং ক্রেতারা অর্ডার বা যোগাযোগের সময় যেসব তথ্য (যেমন: নাম, ঠিকানা, ফোন নম্বর) প্রদান করেন, সেগুলোর যথাযথ ব্যবস্থাপনা ও নৈতিক ব্যবহার সম্পর্কে সংশ্লিষ্ট বিক্রেতারও সরাসরি দায়িত্ব রয়েছে।
+              </p>
+              <p>
+                ক্রেতাদের ব্যক্তিগত তথ্য অর্ডার প্রক্রিয়াকরণ ও ডেলিভারি ছাড়া অন্য কোনো উদ্দেশ্যে অপ্রয়োজনীয়ভাবে প্রকাশ, তৃতীয় পক্ষের কাছে শেয়ার, বিক্রি বা অপব্যবহার করা সম্পূর্ণভাবে নিষিদ্ধ।
+              </p>
+              <p class="font-medium text-[#171717]">
+                Ghoti Landing-এর সকল ব্যবহারকারী ও বিক্রেতাকে অনুরোধ করা হচ্ছে, যেন তারা তাদের ক্রেতাদের ব্যক্তিগত তথ্য যথাযথভাবে গোপন ও সুরক্ষিত রাখেন।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 08: Information Sharing -->
+        <section id="section-08" aria-labelledby="heading-08">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">08</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Information Sharing</span>
+                <h2 id="heading-08" class="text-xl sm:text-2xl font-bold text-[#171717]">তথ্য শেয়ার</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p class="font-semibold text-[#171717]">
+                আমরা ব্যবহারকারীর ব্যক্তিগত তথ্য বিক্রি বা ভাড়া দেওয়ার উদ্দেশ্যে সংগ্রহ করি না।
+              </p>
+              <p>
+                তবে প্ল্যাটফর্মের স্বাভাবিক কার্যক্রম পরিচালনা ও নিরাপত্তার স্বার্থে প্রয়োজন অনুযায়ী শুধুমাত্র নিচের সীমিত ক্ষেত্রে তথ্য ব্যবহার বা শেয়ার করা হতে পারে:
+              </p>
+              <ul class="space-y-2 pl-1">
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>প্ল্যাটফর্ম হোস্টিং, ডেটাবেস, অথেনটিকেশন বা প্রযুক্তিগত অবকাঠামো পরিচালনার জন্য ব্যবহৃত প্রয়োজনীয় সেবা প্রদানকারীদের সঙ্গে।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>অ্যাকাউন্টের নিরাপত্তা নিশ্চিত করা এবং প্রতারণা বা সাইবার অপব্যবহার প্রতিরোধের প্রয়োজনে।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>সংশ্লিষ্ট ব্যবহারকারীর স্পষ্ট সম্মতি বা অনুরোধের ভিত্তিতে।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>প্রযোজ্য আইন, আদালতের আদেশ বা বৈধ সরকারি কর্তৃপক্ষের আইনানুগ নির্দেশের প্রেক্ষিতে।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>Ghoti Landing, Ghoti Market এবং ব্যবহারকারীদের নিরাপত্তা, সম্পত্তি ও আইনগত অধিকার রক্ষার প্রয়োজনীয় ক্ষেত্রে।</span>
+                </li>
+              </ul>
+              <p class="text-sm text-neutral-600 pt-1">
+                যেকোনো ক্ষেত্রেই যেখানে সম্ভব, প্রয়োজনের অতিরিক্ত তথ্য শেয়ার করা থেকে বিরত থাকার নীতি অনুসরণ করা হয়।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 09: Third-Party Services -->
+        <section id="section-09" aria-labelledby="heading-09">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">09</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Third-Party Services</span>
+                <h2 id="heading-09" class="text-xl sm:text-2xl font-bold text-[#171717]">তৃতীয় পক্ষের সেবা</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                Ghoti Landing প্ল্যাটফর্মের কারিগরি অবকাঠামো, অথেনটিকেশন, ডেটা সংরক্ষণ বা পারফরম্যান্স পরিচালনার জন্য <strong class="text-[#171717]">Firebase</strong>, <strong class="text-[#171717]">Google Services</strong> অথবা অন্যান্য প্রয়োজনীয় Third-Party Technology ব্যবহার করা হতে পারে।
+              </p>
+              <p>
+                এসব তৃতীয় পক্ষের সেবা প্রদানকারীর নিজস্ব Privacy Policy এবং Data Handling Policy রয়েছে। প্ল্যাটফর্মের যেসব অংশে তৃতীয় পক্ষের প্রযুক্তি যুক্ত থাকে, সেসব ক্ষেত্রে তাদের নিজস্ব নীতিমালা ও শর্তাবলিও প্রযোজ্য হতে পারে।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 10: Data Retention -->
+        <section id="section-10" aria-labelledby="heading-10">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">10</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Data Retention</span>
+                <h2 id="heading-10" class="text-xl sm:text-2xl font-bold text-[#171717]">তথ্য সংরক্ষণ</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                ব্যবহারকারীর অ্যাকাউন্ট সচল থাকা অবস্থায় এবং প্ল্যাটফর্মের সেবা প্রদানের জন্য যতদিন প্রয়োজন, ততদিন তথ্য সংরক্ষণ করা হতে পারে।
+              </p>
+              <p>
+                এছাড়া অ্যাকাউন্ট পরিচালনা, নিরাপত্তা পর্যবেক্ষণ, প্রতারণা প্রতিরোধ, অভিযোগ বা বিরোধ তদন্ত এবং প্রযোজ্য আইনগত প্রয়োজন অনুযায়ী কিছু তথ্য নির্দিষ্ট সময় পর্যন্ত সংরক্ষিত থাকতে পারে।
+              </p>
+              <p>
+                তথ্য আর প্রয়োজন না হলে অথবা প্রযোজ্য আইন ও ব্যবহারকারীর বৈধ অনুরোধ অনুযায়ী প্রয়োজন হলে, কারিগরি সক্ষমতা ও সিস্টেম ব্যাকআপের সীমাবদ্ধতা বিবেচনায় রেখে তা মুছে ফেলা বা সংরক্ষণ সীমিত করার ব্যবস্থা নেওয়া হতে পারে।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 11: User Rights -->
+        <section id="section-11" aria-labelledby="heading-11">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">11</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">User Rights</span>
+                <h2 id="heading-11" class="text-xl sm:text-2xl font-bold text-[#171717]">ব্যবহারকারীর অধিকার</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                ব্যবহারকারীরা প্রযোজ্য আইন ও প্ল্যাটফর্মের প্রক্রিয়া অনুযায়ী নিচের অধিকারগুলো চর্চা করতে পারবেন:
+              </p>
+              <ul class="space-y-2 pl-1">
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>নিজেদের সংরক্ষিত ব্যক্তিগত তথ্য সম্পর্কে জানতে চাওয়া।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>কোনো তথ্য ভুল বা অসম্পূর্ণ থাকলে তা সংশোধনের অনুরোধ করা।</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#FF6B35] shrink-0 mt-2"></span>
+                  <span>উপযুক্ত ক্ষেত্রে ব্যক্তিগত তথ্য মুছে ফেলা বা ব্যবহার সীমিত করার অনুরোধ জানানো।</span>
+                </li>
+              </ul>
+              <p class="text-sm text-neutral-600 pt-1">
+                তবে অ্যাকাউন্ট নিরাপত্তা, প্রতারণা প্রতিরোধ, চলমান তদন্ত, আইনগত বাধ্যবাধকতা বা প্রয়োজনীয় ব্যবসায়িক রেকর্ডের কারণে কিছু নির্দিষ্ট তথ্য তাৎক্ষণিকভাবে মুছে ফেলা সম্ভব নাও হতে পারে।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 12: Children's Privacy -->
+        <section id="section-12" aria-labelledby="heading-12">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">12</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Children's Privacy</span>
+                <h2 id="heading-12" class="text-xl sm:text-2xl font-bold text-[#171717]">অপ্রাপ্তবয়স্কদের গোপনীয়তা</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                Ghoti Landing-এর ব্যবহারকারীদের অ্যাকাউন্ট তৈরি এবং ব্যবসায়িক কার্যক্রম পরিচালনার ক্ষেত্রে প্রযোজ্য বয়সসীমা ও দেশের আইন মেনে চলতে হবে।
+              </p>
+              <p>
+                প্রযোজ্য আইন অনুযায়ী প্রয়োজনীয় অভিভাবকের বৈধ সম্মতি ছাড়া অপ্রাপ্তবয়স্কদের ব্যক্তিগত তথ্য সংগ্রহ বা ব্যবহার করা উচিত নয়। যদি কোনো অপ্রাপ্তবয়স্কের তথ্য অভিভাবকের সম্মতি ছাড়া অনুপযুক্তভাবে সংগ্রহ করা হয়েছে বলে আমাদের নজরে আসে বা জানানো হয়, তবে যাচাই সাপেক্ষে প্রয়োজনীয় ব্যবস্থা নেওয়া হবে।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 13: Data Security -->
+        <section id="section-13" aria-labelledby="heading-13">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">13</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Data Security</span>
+                <h2 id="heading-13" class="text-xl sm:text-2xl font-bold text-[#171717]">তথ্যের নিরাপত্তা</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                ব্যবহারকারীদের ব্যক্তিগত তথ্য অননুমোদিত প্রবেশ, পরিবর্তন, প্রকাশ বা অপব্যবহার থেকে সুরক্ষিত রাখতে আমরা প্রয়োজনীয় ও যুক্তিসঙ্গত কারিগরি ও প্রশাসনিক নিরাপত্তা ব্যবস্থা গ্রহণের চেষ্টা করি।
+              </p>
+              <p>
+                তবে ইন্টারনেটের মাধ্যমে তথ্য আদান-প্রদান বা ডিজিটাল সংরক্ষণ ব্যবস্থায় কোনো পদ্ধতিই শতভাগ ঝুঁকিমুক্ত নয়। তাই তথ্য সুরক্ষার সর্বোচ্চ প্রচেষ্টা থাকা সত্ত্বেও ইন্টারনেটের মাধ্যমে তথ্য আদান-প্রদানের ক্ষেত্রে শতভাগ নিরাপত্তার নিশ্চয়তা দেওয়া সম্ভব নয়।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 14: Privacy Policy Updates -->
+        <section id="section-14" aria-labelledby="heading-14">
+          <article class="bg-white rounded-2xl border border-orange-100 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 text-[#FF6A00] font-bold text-base shrink-0">14</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500 block">Privacy Policy Updates</span>
+                <h2 id="heading-14" class="text-xl sm:text-2xl font-bold text-[#171717]">নীতিমালা পরিবর্তন ও আপডেট</h2>
+              </div>
+            </div>
+            <div class="space-y-3.5 text-neutral-700 text-base leading-relaxed">
+              <p>
+                প্ল্যাটফর্মের নতুন ফিচার সংযোজন, নিরাপত্তা উন্নয়ন অথবা আইনগত প্রয়োজনের কারণে Ghoti Landing কর্তৃপক্ষ যেকোনো সময় এই Privacy Policy পরিবর্তন, সংশোধন বা আপডেট করতে পারে।
+              </p>
+              <p>
+                প্রয়োজন অনুযায়ী পূর্ববর্তী নোটিশ ছাড়াই এই নীতিমালায় পরিবর্তন আনা হতে পারে এবং পরিবর্তিত নীতিমালা এই পেজে প্রকাশিত হওয়ার পর থেকেই কার্যকর হবে। তাই ব্যবহারকারীদের নিয়মিত এই পেজ (<span class="text-[#FF6A00] font-medium">https://landing.ghotimarket.com/privacy-policy</span>) ভিজিট করে সর্বশেষ Privacy Policy সম্পর্কে অবগত থাকার অনুরোধ করা হচ্ছে।
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 15: Contact & Support -->
+        <section id="section-15" aria-labelledby="heading-15">
+          <article class="bg-white rounded-2xl border border-orange-200/90 p-6 sm:p-8 shadow-xs">
+            <div class="flex items-center gap-3.5 mb-4">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#FF6B35] text-white font-bold text-base shrink-0">15</span>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-[#FF6A00] block">Contact & Support</span>
+                <h2 id="heading-15" class="text-xl sm:text-2xl font-bold text-[#171717]">যোগাযোগ ও সহায়তা</h2>
+              </div>
+            </div>
+            <div class="space-y-4 text-neutral-700 text-base leading-relaxed">
+              <p>
+                এই Privacy Policy, আপনার ব্যক্তিগত তথ্য, অ্যাকাউন্টের নিরাপত্তা অথবা সংরক্ষিত তথ্য সংশোধন ও মুছে ফেলার অনুরোধ সংক্রান্ত কোনো প্রশ্ন থাকলে অনুগ্রহ করে আমাদের <strong class="text-[#171717]">Official Support</strong>-এর মাধ্যমে যোগাযোগ করুন।
+              </p>
+
+              <!-- Official Support Placeholder Card (Ready for real support details without fake contact info) -->
+              <div class="rounded-xl bg-[#FFF9F5] border border-orange-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="space-y-1">
+                  <div class="inline-flex items-center gap-2 text-sm font-bold text-[#FF6A00]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span>Ghoti Landing Official Support</span>
+                  </div>
+                  <p class="text-sm text-neutral-700">
+                    অ্যাকাউন্ট ড্যাশবোর্ডের সাপোর্ট অপশন অথবা Ghoti Landing-এর অফিসিয়াল ওয়েবসাইটের মাধ্যমে সরাসরি সহায়তা গ্রহণ করুন।
+                  </p>
+                  <!-- Configurable Support Info Slot -->
+                  <p id="official-support-slot" class="text-xs text-neutral-500 pt-0.5">
+                    প্ল্যাটফর্ম ওয়েবসাইট: <a href="https://landing.ghotimarket.com" class="text-[#FF6A00] underline hover:text-[#FF6B35]">https://landing.ghotimarket.com</a>
+                  </p>
+                </div>
+
+                <a 
+                  href="https://landing.ghotimarket.com" 
+                  class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-orange-50 text-[#FF6A00] border border-orange-200 font-semibold text-sm transition-colors shrink-0"
+                >
+                  <span>প্ল্যাটফর্মে ফিরে যান</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-orange-200/70 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        
+        <!-- Brand Identity -->
+        <div class="space-y-1.5">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FF6B35]"></span>
+            <span class="font-bold text-lg text-[#171717] tracking-tight">
+              GHOTI LANDING
+            </span>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-orange-50 text-[#FF6A00] border border-orange-200">
+              Powered by GHOTI MARKET
+            </span>
+          </div>
+          <p class="text-sm text-neutral-600">
+            Free Landing Page Builder — সহজ, দ্রুত এবং নির্ভরযোগ্য ল্যান্ডিং পেজ সমাধান।
+          </p>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm font-medium">
+          <a href="https://landing.ghotimarket.com" class="text-neutral-700 hover:text-[#FF6A00] transition-colors">
+            Home
+          </a>
+          <a href="https://landing.ghotimarket.com/privacy-policy" class="text-[#FF6A00] font-semibold">
+            Privacy Policy
+          </a>
+          <a href="#important-notice" class="text-neutral-700 hover:text-[#FF6A00] transition-colors">
+            গুরুত্বপূর্ণ নির্দেশনা
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-orange-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-neutral-500">
+        <p>
+          &copy; <span id="current-year">2026</span> GHOTI LANDING — Powered by GHOTI MARKET. সর্বস্বত্ব সংরক্ষিত।
+        </p>
+        <p class="text-neutral-500">
+          URL: <span class="text-neutral-700">https://landing.ghotimarket.com/privacy-policy</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Subtle Back-to-Top Button (Progressive Enhancement) -->
+  <button 
+    id="back-to-top" 
+    type="button" 
+    aria-label="উপরে ফিরে যান"
+    class="hidden fixed bottom-5 right-5 z-30 p-3 rounded-xl bg-[#FF6B35] hover:bg-[#FF6A00] text-white shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF6B35] transition-colors"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- Progressive Enhancement Script (Page remains 100% readable without JS) -->
+  <script>
+    (function () {
+      try {
+        // Set current year dynamically if needed
+        var yearEl = document.getElementById('current-year');
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+
+        // Back to top visibility & click handler
+        var backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+          window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) {
+              backToTopBtn.classList.remove('hidden');
+            } else {
+              backToTopBtn.classList.add('hidden');
+            }
+          }, { passive: true });
+
+          backToTopBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+
+        // Close mobile TOC <details> when a link is tapped
+        var mobileDetails = document.querySelector('#mobile-toc-wrapper details');
+        var mobileLinks = document.querySelectorAll('.mobile-toc-link');
+        if (mobileDetails && mobileLinks.length) {
+          mobileLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+              mobileDetails.removeAttribute('open');
+            });
+          });
+        }
+
+        // Highlight active section in Desktop Table of Contents using IntersectionObserver
+        var sections = document.querySelectorAll('main section[id]');
+        var tocLinks = document.querySelectorAll('.toc-link');
+
+        if ('IntersectionObserver' in window && sections.length && tocLinks.length) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                var id = entry.target.getAttribute('id');
+                tocLinks.forEach(function (link) {
+                  link.classList.remove('active');
+                  if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('active');
+                  }
+                });
+              }
+            });
+          }, {
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+          });
+
+          sections.forEach(function (section) {
+            observer.observe(section);
+          });
+        }
+      } catch (err) {
+        // Fail silently so core HTML content is never disrupted
+      }
+    })();
+  </script>
+</body>
+</html>
